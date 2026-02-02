@@ -3,62 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطاقة جرير الإلكترونية</title>
+    <title>مكتبة جرير - بطاقة الهدايا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="page-container">
+    <div class="app-container">
         <header class="main-header">
-            <div class="top-icons">
-                <i class="fas fa-bars"></i>
-                <div class="logo">LOGO</div>
-                <i class="fas fa-shopping-cart"></i>
+            <div class="nav-row">
+                <i class="fas fa-bars menu-icon"></i>
+                <div class="logo">
+                    <img src="https://www.jarir.com/static/version1704355556/frontend/Jarir/default/ar_SA/images/logo.svg" alt="Jarir" onerror="this.style.display='none'">
+                    <span class="logo-text">JARIR</span>
+                </div>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">1</span>
+                </div>
             </div>
-            <div class="search-bar">
+            <div class="search-box">
                 <input type="text" placeholder="البحث...">
+                <i class="fas fa-search"></i>
             </div>
-            <div class="delivery-option">
-                حدد خيار التوصيل الذي تفضله <i class="fas fa-chevron-down"></i>
+            <div class="delivery-bar">
+                <span>حدد خيار التوصيل الذي تفضله</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </header>
 
-        <main class="content">
-            <div class="card-image">
-                <img src="https://i.ibb.co/vzVf9W7/jarir-card.png" alt="Jarir Gift Card">
+        <main class="content-area">
+            <div class="gift-card-img">
+                <img src="card.png" alt="بطاقة جرير" onerror="this.src='https://i.ibb.co/vzVf9W7/jarir-card.png'">
             </div>
 
-            <div class="text-section">
-                <h1 class="title">بطاقة جرير الإلكترونية للهدايا</h1>
-                <p>هل تبحث عن هدية مثالية ولكن ليس لديك وقت للتسوق أو ما زلت متردداً بشأن الهدية التي تريد تقديمها؟ لا داعي للقلق، بطاقة جرير الإلكترونية من مكتبة جرير هي الحل.</p>
-                <p>بطاقة جرير للهدايا الإلكترونية هي رمز رقمي يمكنك استخدامه للدفع عند شراء أي منتجات في معرض جرير أو موقع جرير الإلكتروني أو تطبيق جرير على الأجهزة الذكية.</p>
-                <p class="denominations">تتوفر البطاقة بفئات 50 ريال، 100 ريال، 300 ريال، 500 ريال، 1000 ريال.</p>
-            </div>
+            <section class="description">
+                <h1 class="main-title">بطاقة جرير الإلكترونية للهدايا</h1>
+                <p class="text-p">هل تبحث عن هدية مثالية ولكن ليس لديك وقت للتسوق أو ما زلت متردداً بشأن الهدية التي تريد تقديمها؟ لا داعي للقلق، بطاقة جرير الإلكترونية من مكتبة جرير هي الحل.</p>
+                <p class="text-p">بطاقة جرير للهدايا الإلكترونية هي رمز رقمي يمكنك استخدامه للدفع عند شراء أي منتجات في معرض جرير أو موقع جرير الإلكتروني أو تطبيق جرير على الأجهزة الذكية.</p>
+                <p class="price-tags">تتوفر البطاقة بفئات 50 ريال، 100 ريال، 300 ريال، 500 ريال، 1000 ريال.</p>
+            </section>
 
-            <div class="app-download">
+            <div class="download-badge">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
             </div>
 
-            <div class="social-media">
-                <i class="fab fa-facebook-f blue"></i>
-                <i class="fab fa-x-twitter black"></i>
+            <div class="social-bar">
+                <i class="fab fa-facebook-f fb"></i>
+                <i class="fab fa-x-twitter x-icon"></i>
                 <i class="fab fa-instagram insta"></i>
-                <i class="fab fa-youtube red"></i>
-                <i class="fab fa-snapchat yellow"></i>
-                <i class="fab fa-tiktok black"></i>
-                <i class="fab fa-linkedin-in linkedin"></i>
+                <i class="fab fa-youtube yt"></i>
+                <i class="fab fa-snapchat snap"></i>
+                <i class="fab fa-tiktok tk"></i>
+                <i class="fab fa-linkedin-in ln"></i>
             </div>
         </main>
 
-        <footer class="footer">
-            <div class="footer-item">رعاية العميل <i class="fas fa-chevron-down"></i></div>
-            <hr>
-            <div class="footer-item">اكتشف جرير <i class="fas fa-chevron-down"></i></div>
-            <hr>
-            <div class="footer-item">خدمات جرير <i class="fas fa-chevron-down"></i></div>
-            <hr>
-            <div class="footer-item">عن جرير <i class="fas fa-chevron-down"></i></div>
+        <footer class="main-footer">
+            <div class="footer-item"><span>رعاية العميل</span><i class="fas fa-chevron-down"></i></div>
+            <div class="footer-item"><span>اكتشف جرير</span><i class="fas fa-chevron-down"></i></div>
+            <div class="footer-item"><span>خدمات جرير</span><i class="fas fa-chevron-down"></i></div>
+            <div class="footer-item"><span>عن جرير</span><i class="fas fa-chevron-down"></i></div>
         </footer>
     </div>
 
