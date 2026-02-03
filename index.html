@@ -14,29 +14,47 @@
             --jarir-navy: #2D3E50;
             --light-gray: #F3F4F6;
         }
-        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; }
+        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; margin: 0; padding: 0; }
         
         .product-gradient {
             background: radial-gradient(circle, #ffffff 0%, #fdf2f2 100%);
+            min-height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        
+        /* ضبط حجم الصورة المرفوعة لتناسب التصميم */
+        .phone-image {
+            width: 220px; /* حجم مثالي للجوال */
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+            object-fit: contain;
+        }
+
         .btn-red { background-color: var(--jarir-red); transition: 0.3s; }
         .btn-red:hover { opacity: 0.9; }
         
-        /* تحسين القوائم المنسدلة */
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
         .accordion-content.active { max-height: 200px; }
         .rotate-icon { transition: transform 0.3s; }
         .rotate-icon.active { transform: rotate(180deg); }
+
+        /* شريط التمرير للبادجات */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col">
+<body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col bg-white">
 
     <header class="p-4 border-b sticky top-0 bg-white z-50">
         <div class="flex items-center justify-between mb-3">
             <i class="fa-solid fa-bars text-xl text-gray-700"></i>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1">
                 <span class="text-2xl font-black text-[#E30613]">JARIR</span>
-                <i class="fa-solid fa-circle-check text-[#E30613]"></i>
+                <div class="bg-[#E30613] text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px]">
+                    <i class="fa-solid fa-check"></i>
+                </div>
             </div>
             <div class="relative">
                 <i class="fa-solid fa-cart-shopping text-xl text-gray-700"></i>
@@ -45,84 +63,82 @@
         </div>
         <div class="relative">
             <input type="text" value="iphone 17 pro max" readonly 
-                   class="w-full bg-gray-100 rounded-lg py-2 pr-10 pl-4 text-sm text-right outline-none">
+                   class="w-full bg-gray-100 rounded-lg py-2 pr-10 pl-4 text-sm text-right outline-none text-gray-600">
             <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-gray-400"></i>
         </div>
     </header>
 
-    <section class="product-gradient py-10 flex justify-center relative">
-        <div class="w-48 h-96 bg-orange-500 rounded-[3rem] border-[6px] border-orange-600 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 w-full h-8 flex justify-center items-center">
-                <div class="w-16 h-4 bg-black rounded-full mt-2"></div> </div>
-            <div class="absolute top-10 left-4 w-12 h-12 bg-orange-600 rounded-xl flex flex-wrap p-1 gap-1 shadow-inner">
-                <div class="w-4 h-4 bg-black rounded-full"></div>
-                <div class="w-4 h-4 bg-black rounded-full"></div>
-                <div class="w-4 h-4 bg-black rounded-full"></div>
-            </div>
-            <div class="mt-40 flex flex-col items-center">
-                <i class="fa-brands fa-apple text-5xl text-orange-800 opacity-20"></i>
-            </div>
-        </div>
+    <section class="product-gradient py-6">
+        <img src="https://i.ibb.co/ks3TN1ts/IMG-4008.jpg" alt="iPhone 17 Pro Max" class="phone-image">
     </section>
 
     <main class="p-5">
-        <div class="flex items-center gap-2 mb-2">
-            <i class="fa-brands fa-apple text-2xl"></i>
-            <h1 class="text-xl font-bold">ابل آيفون 17 برو ماكس</h1>
+        <div class="flex items-center justify-between mb-2">
+            <h1 class="text-xl font-extrabold text-gray-900">ابل آيفون 17 برو ماكس</h1>
+            <i class="fa-brands fa-apple text-3xl text-gray-800"></i>
         </div>
 
-        <div class="flex gap-2 mb-4 overflow-x-auto pb-2">
-            <span class="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600 border">256 جيجابايت</span>
-            <span class="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600 border">برتقالي كوزمك</span>
-            <span class="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600 border">آبل آيه 19 برو</span>
+        <div class="flex gap-2 mb-6 overflow-x-auto hide-scrollbar pb-2">
+            <span class="bg-gray-100 px-4 py-1.5 rounded-full text-xs font-bold text-gray-700 border border-gray-200">256 جيجابايت</span>
+            <span class="bg-gray-100 px-4 py-1.5 rounded-full text-xs font-bold text-gray-700 border border-gray-200">برتقالي كوزمك</span>
+            <span class="bg-gray-100 px-4 py-1.5 rounded-full text-xs font-bold text-gray-700 border border-gray-200">آبل آيه 19 برو</span>
         </div>
 
-        <div class="mb-6">
-            <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
-            <p class="text-xs text-gray-400">شامل ضريبة القيمة المضافة</p>
-        </div>
-
-        <button class="btn-red w-full text-white font-bold py-4 rounded-lg text-lg mb-6 shadow-lg">
-            أضف إلى السلة
-        </button>
-
-        <div class="flex justify-center mb-8">
-            <div class="bg-black text-white px-4 py-2 rounded-xl flex items-center gap-3 w-max cursor-pointer">
-                <i class="fa-brands fa-apple text-3xl"></i>
-                <div class="text-right">
-                    <p class="text-[10px]">Download on the</p>
-                    <p class="text-lg font-bold leading-none">App Store</p>
-                </div>
+        <div class="mb-6 bg-red-50 p-3 rounded-lg flex justify-between items-center">
+            <div>
+                <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
+                <p class="text-[10px] text-gray-500 font-bold">شامل ضريبة القيمة المضافة</p>
+            </div>
+            <div class="text-left">
+                 <p class="text-xs text-gray-400 line-through">6,199 ر.س</p>
+                 <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded">وفر 500</span>
             </div>
         </div>
 
-        <div class="flex justify-between items-center px-2 mb-8">
+        <button class="btn-red w-full text-white font-bold py-4 rounded-xl text-lg mb-8 shadow-md active:scale-95">
+            أضف إلى السلة
+        </button>
+
+        <div class="flex justify-center mb-10">
+            <a href="#" class="bg-black text-white px-5 py-2 rounded-xl flex items-center gap-3 w-max transition hover:opacity-80">
+                <i class="fa-brands fa-apple text-3xl"></i>
+                <div class="text-right">
+                    <p class="text-[9px] uppercase tracking-tighter">Download on the</p>
+                    <p class="text-lg font-bold leading-none">App Store</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="flex justify-between items-center px-2 mb-10">
             <i class="fa-brands fa-facebook text-[#1877F2] text-2xl"></i>
             <i class="fa-brands fa-x-twitter text-black text-2xl"></i>
             <i class="fa-brands fa-instagram text-[#E4405F] text-2xl"></i>
             <i class="fa-brands fa-youtube text-[#CD201F] text-2xl"></i>
-            <i class="fa-brands fa-snapchat text-[#FFFC00] bg-black rounded-full p-1 text-xl"></i>
+            <i class="fa-brands fa-snapchat text-yellow-400 bg-black rounded-full p-1.5 text-lg"></i>
             <i class="fa-brands fa-tiktok text-black text-2xl"></i>
             <i class="fa-brands fa-linkedin text-[#0A66C2] text-2xl"></i>
         </div>
     </main>
 
-    <footer class="bg-[#2D3E50] text-white p-5 mt-auto">
-        <div class="space-y-4">
+    <footer class="bg-[#2D3E50] text-white p-6 mt-auto rounded-t-3xl">
+        <div class="space-y-5">
             <div onclick="toggleAcc(1)" class="flex justify-between items-center border-b border-gray-600 pb-3 cursor-pointer">
                 <span class="font-bold">رعاية العميل</span>
-                <i id="icon-1" class="fa-solid fa-chevron-down rotate-icon text-sm"></i>
+                <i id="icon-1" class="fa-solid fa-chevron-down rotate-icon text-sm text-gray-400"></i>
             </div>
-            <div id="content-1" class="accordion-content text-gray-400 text-sm">سياسة الإرجاع، الضمان، وخدمات التوصيل.</div>
+            <div id="content-1" class="accordion-content text-gray-400 text-sm leading-relaxed">نحن هنا لخدمتكم: سياسة الإرجاع، تتبع الطلب، والضمان الممتد.</div>
 
             <div onclick="toggleAcc(2)" class="flex justify-between items-center border-b border-gray-600 pb-3 cursor-pointer">
-                <span class="font-bold">اكتشف جرير</span>
-                <i id="icon-2" class="fa-solid fa-chevron-down rotate-icon text-sm"></i>
+                <span class="font-bold">خدمات جرير</span>
+                <i id="icon-2" class="fa-solid fa-chevron-down rotate-icon text-sm text-gray-400"></i>
             </div>
-            <div id="content-2" class="accordion-content text-gray-400 text-sm">فروعنا، مجلة جرير، وآخر العروض.</div>
+            <div id="content-2" class="accordion-content text-gray-400 text-sm leading-relaxed">اكتشف عروضنا الحصرية، بطاقات الهدايا، وخدمة التقسيط.</div>
         </div>
         
-        <p class="text-center text-[10px] text-gray-500 mt-10">جميع الحقوق محفوظة لمكتبة جرير © 2026</p>
+        <div class="mt-12 text-center border-t border-gray-700 pt-6">
+            <p class="text-[11px] text-gray-400 font-bold mb-2">كن أول من يعرف عن أحدث التقنيات والعروض</p>
+            <p class="text-[10px] text-gray-500">جميع الحقوق محفوظة لمكتبة جرير © 2026</p>
+        </div>
     </footer>
 
     <script>
