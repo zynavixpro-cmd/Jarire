@@ -1,326 +1,137 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>جرير - آيفون 17 برو ماكس</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  /* ─── CSS Variables ─── */
-  :root {
-    --red: #E30613;
-    --navy: #2D3E50;
-    --gray-bg: #F3F4F6;
-    --text-dark: #1a1a1a;
-  }
-
-  * { font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
-  body { background: #fff; color: var(--text-dark); min-height: 100vh; }
-
-  /* ─── Header ─── */
-  .header { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
-  .logo-text { font-weight: 800; font-size: 1.45rem; color: var(--red); letter-spacing: -0.5px; }
-  .search-wrap { position: relative; }
-  .search-wrap input { padding-right: 2.2rem; }
-  .search-wrap .search-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #999; pointer-events: none; }
-
-  /* ─── Product Image ─── */
-  .product-image-wrap {
-    background: linear-gradient(160deg, #fff5ee 0%, #ffe8d6 50%, #fff0e8 100%);
-    display: flex; justify-content: center; align-items: center;
-    padding: 28px 0 18px;
-    position: relative; overflow: hidden;
-  }
-  .product-image-wrap::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 70% 30%, rgba(255,160,80,.18) 0%, transparent 60%),
-                radial-gradient(circle at 30% 80%, rgba(255,200,140,.15) 0%, transparent 50%);
-    pointer-events: none;
-  }
-  .phone-img { position: relative; z-index: 1; width: 195px; filter: drop-shadow(0 12px 28px rgba(200,100,30,.25)); }
-
-  /* ─── Badges ─── */
-  .badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: var(--gray-bg); border-radius: 20px;
-    padding: 6px 14px; font-size: .82rem; font-weight: 600; color: #444;
-    white-space: nowrap;
-  }
-  .badge .dot { width: 8px; height: 8px; border-radius: 50%; }
-
-  /* ─── Price Tag ─── */
-  .price-red { color: var(--red); }
-
-  /* ─── Add to Cart Btn ─── */
-  .btn-cart {
-    background: var(--red); color: #fff; font-weight: 700; font-size: .95rem;
-    border: none; border-radius: 12px; padding: 14px 0; width: 100%;
-    cursor: pointer; transition: filter .15s, transform .1s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
-  .btn-cart:active { filter: brightness(.88); transform: scale(.975); }
-
-  /* ─── Accordion ─── */
-  .accordion-item { border-bottom: 1px solid #e5e7eb; }
-  .accordion-btn {
-    width: 100%; background: none; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 0; font-size: .92rem; font-weight: 600; color: #fff;
-  }
-  .accordion-btn .chevron { transition: transform .25s; }
-  .accordion-btn.open .chevron { transform: rotate(180deg); }
-  .accordion-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-  .accordion-body.open { max-height: 200px; }
-  .accordion-body p { color: #a8bcc8; font-size: .84rem; padding-bottom: 12px; line-height: 1.6; }
-
-  /* ─── Footer Social ─── */
-  .social-icon {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--navy); display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: background .15s;
-  }
-  .social-icon:hover { background: #3d5166; }
-
-  /* ─── Scrollbar hide (mobile feel) ─── */
-  .scroll-hide::-webkit-scrollbar { display: none; }
-  .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جرير - آيفون 17 برو ماكس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --jarir-red: #E30613;
+            --jarir-navy: #2D3E50;
+            --light-gray: #F3F4F6;
+        }
+        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; }
+        
+        .product-gradient {
+            background: radial-gradient(circle, #ffffff 0%, #fdf2f2 100%);
+        }
+        .btn-red { background-color: var(--jarir-red); transition: 0.3s; }
+        .btn-red:hover { opacity: 0.9; }
+        
+        /* تحسين القوائم المنسدلة */
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-content.active { max-height: 200px; }
+        .rotate-icon { transition: transform 0.3s; }
+        .rotate-icon.active { transform: rotate(180deg); }
+    </style>
 </head>
-<body class="max-w-md mx-auto bg-white min-h-screen flex flex-col" style="font-family:'Cairo',sans-serif;">
+<body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col">
 
-<!-- ══════════ HEADER ══════════ -->
-<header class="header">
-  <!-- Top bar -->
-  <div class="flex items-center justify-between px-4 py-2">
-    <!-- Hamburger -->
-    <button aria-label="قائمة">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <!-- Logo -->
-    <span class="logo-text">جرير</span>
-    <!-- Cart -->
-    <button aria-label="السلة" class="relative">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span class="absolute -top-1.5 -left-1.5 bg-red-600 text-white text-xs font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center" style="background:var(--red);width:17px;height:17px;font-size:10px;">٢</span>
-    </button>
-  </div>
-  <!-- Search bar -->
-  <div class="px-4 pb-3 search-wrap">
-    <div class="flex items-center bg-gray-100 rounded-xl px-3 py-2" style="background:var(--gray-bg);">
-      <span class="search-icon">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </span>
-      <input type="text" value="iphone 17 pro max" class="bg-transparent border-none outline-none text-sm w-full text-right pr-6" style="font-family:'Cairo',sans-serif;color:#555;" readonly />
-    </div>
-  </div>
-</header>
+    <header class="p-4 border-b sticky top-0 bg-white z-50">
+        <div class="flex items-center justify-between mb-3">
+            <i class="fa-solid fa-bars text-xl text-gray-700"></i>
+            <div class="flex items-center gap-2">
+                <span class="text-2xl font-black text-[#E30613]">JARIR</span>
+                <i class="fa-solid fa-circle-check text-[#E30613]"></i>
+            </div>
+            <div class="relative">
+                <i class="fa-solid fa-cart-shopping text-xl text-gray-700"></i>
+                <span class="absolute -top-2 -right-2 bg-[#E30613] text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">1</span>
+            </div>
+        </div>
+        <div class="relative">
+            <input type="text" value="iphone 17 pro max" readonly 
+                   class="w-full bg-gray-100 rounded-lg py-2 pr-10 pl-4 text-sm text-right outline-none">
+            <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-gray-400"></i>
+        </div>
+    </header>
 
-<!-- ══════════ BREADCRUMB ══════════ -->
-<nav class="px-4 py-2 text-xs text-gray-400 flex items-center gap-1 scroll-hide overflow-x-auto" style="font-size:.78rem;">
-  <span class="cursor-pointer hover:text-red-600" style="color:#aaa;">الرئيسية</span>
-  <span class="text-gray-300">›</span>
-  <span class="cursor-pointer hover:text-red-600" style="color:#aaa;">الإلكترونيات</span>
-  <span class="text-gray-300">›</span>
-  <span class="cursor-pointer hover:text-red-600" style="color:#aaa;">الهواتف</span>
-  <span class="text-gray-300">›</span>
-  <span style="color:#aaa;">آيفون 17</span>
-</nav>
+    <section class="product-gradient py-10 flex justify-center relative">
+        <div class="w-48 h-96 bg-orange-500 rounded-[3rem] border-[6px] border-orange-600 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 w-full h-8 flex justify-center items-center">
+                <div class="w-16 h-4 bg-black rounded-full mt-2"></div> </div>
+            <div class="absolute top-10 left-4 w-12 h-12 bg-orange-600 rounded-xl flex flex-wrap p-1 gap-1 shadow-inner">
+                <div class="w-4 h-4 bg-black rounded-full"></div>
+                <div class="w-4 h-4 bg-black rounded-full"></div>
+                <div class="w-4 h-4 bg-black rounded-full"></div>
+            </div>
+            <div class="mt-40 flex flex-col items-center">
+                <i class="fa-brands fa-apple text-5xl text-orange-800 opacity-20"></i>
+            </div>
+        </div>
+    </section>
 
-<!-- ══════════ PRODUCT IMAGE ══════════ -->
-<section class="product-image-wrap">
-  <!-- SVG iPhone 17 Pro Max (Orange Cosmic) -->
-  <svg class="phone-img" viewBox="0 0 200 410" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#FF8C42"/>
-        <stop offset="40%" stop-color="#FF6B2B"/>
-        <stop offset="70%" stop-color="#E8501A"/>
-        <stop offset="100%" stop-color="#FF9A5C"/>
-      </linearGradient>
-      <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#1a1a2e"/>
-        <stop offset="50%" stop-color="#16213e"/>
-        <stop offset="100%" stop-color="#0f3460"/>
-      </linearGradient>
-      <linearGradient id="screenShine" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
-        <stop offset="50%" stop-color="rgba(255,255,255,0)"/>
-      </linearGradient>
-      <clipPath id="screenClip">
-        <rect x="14" y="52" width="172" height="306" rx="22"/>
-      </clipPath>
-    </defs>
-    <!-- Body -->
-    <rect x="4" y="4" width="192" height="402" rx="48" fill="url(#bodyGrad)" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
-    <!-- Side highlight -->
-    <rect x="4" y="4" width="192" height="402" rx="48" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
-    <!-- Screen bezel -->
-    <rect x="10" y="48" width="180" height="314" rx="26" fill="#111"/>
-    <!-- Screen -->
-    <rect x="14" y="52" width="172" height="306" rx="22" fill="url(#screenGrad)"/>
-    <!-- Screen content: wallpaper effect -->
-    <g clip-path="url(#screenClip)">
-      <ellipse cx="60" cy="120" rx="90" ry="80" fill="rgba(255,140,60,.12)"/>
-      <ellipse cx="140" cy="280" rx="70" ry="90" fill="rgba(255,80,30,.1)"/>
-      <ellipse cx="100" cy="200" rx="50" ry="60" fill="rgba(255,180,100,.06)"/>
-    </g>
-    <!-- Screen shine -->
-    <rect x="14" y="52" width="172" height="306" rx="22" fill="url(#screenShine)"/>
-    <!-- Dynamic Island -->
-    <rect x="72" y="64" width="56" height="22" rx="11" fill="#000"/>
-    <!-- Status bar dots (subtle) -->
-    <circle cx="30" cy="76" r="2.5" fill="rgba(255,255,255,.5)"/>
-    <circle cx="170" cy="76" r="2.5" fill="rgba(255,255,255,.5)"/>
-    <!-- Home indicator -->
-    <rect x="65" y="344" width="70" height="4" rx="2" fill="rgba(255,255,255,.35)"/>
-    <!-- Side buttons -->
-    <rect x="0" y="100" width="4" height="40" rx="2" fill="rgba(0,0,0,.12)"/>
-    <rect x="0" y="155" width="4" height="25" rx="2" fill="rgba(0,0,0,.12)"/>
-    <rect x="196" y="130" width="4" height="55" rx="2" fill="rgba(0,0,0,.12)"/>
-  </svg>
-</section>
+    <main class="p-5">
+        <div class="flex items-center gap-2 mb-2">
+            <i class="fa-brands fa-apple text-2xl"></i>
+            <h1 class="text-xl font-bold">ابل آيفون 17 برو ماكس</h1>
+        </div>
 
-<!-- ══════════ PRODUCT INFO ══════════ -->
-<section class="px-4 pt-4 pb-2">
-  <!-- Brand tag -->
-  <div class="flex items-center gap-2 mb-1">
-    <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background:#fff0e8;color:var(--red);font-size:.75rem;">آبل</span>
-  </div>
-  <!-- Title -->
-  <h1 class="text-xl font-bold leading-snug mt-1" style="color:var(--text-dark);font-size:1.15rem;">ابل آيفون 17 برو ماكس</h1>
-  <!-- Sub info -->
-  <p class="text-sm text-gray-400 mt-0.5" style="font-size:.82rem;">هاتف ذكي | 6.9 بوصة | كاميرا ٤و ميجا بيكسل</p>
-</section>
+        <div class="flex gap-2 mb-4 overflow-x-auto pb-2">
+            <span class="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600 border">256 جيجابايت</span>
+            <span class="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600 border">برتقالي كوزمك</span>
+            <span class="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600 border">آبل آيه 19 برو</span>
+        </div>
 
-<!-- ══════════ SPEC BADGES ══════════ -->
-<div class="px-4 py-2 flex gap-2 scroll-hide overflow-x-auto">
-  <span class="badge">
-    <span class="dot" style="background:#6366f1;"></span> 256 جيجا بايت
-  </span>
-  <span class="badge">
-    <span class="dot" style="background:#f97316;"></span> Orange Cosmic
-  </span>
-  <span class="badge">
-    <span class="dot" style="background:#10b981;"></span> Apple A19 Pro
-  </span>
-</div>
+        <div class="mb-6">
+            <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
+            <p class="text-xs text-gray-400">شامل ضريبة القيمة المضافة</p>
+        </div>
 
-<!-- ══════════ PRICE + CART ══════════ -->
-<section class="px-4 py-3">
-  <!-- Price row -->
-  <div class="flex items-end justify-between mb-3">
-    <div>
-      <span class="text-2xl font-bold price-red" style="font-size:1.6rem;">5,699</span>
-      <span class="text-sm font-semibold text-gray-500 ml-1">ر.س</span>
-    </div>
-    <span class="text-xs text-gray-400 line-through" style="font-size:.78rem;">6,199 ر.س</span>
-  </div>
-  <!-- Availability -->
-  <p class="text-sm mb-3 flex items-center gap-1.5" style="font-size:.82rem;">
-    <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
-    <span class="text-green-600 font-semibold">متوفر في المخزون</span>
-  </p>
-  <!-- Add to cart -->
-  <button class="btn-cart">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-    أضف إلى السلة
-  </button>
-</section>
+        <button class="btn-red w-full text-white font-bold py-4 rounded-lg text-lg mb-6 shadow-lg">
+            أضف إلى السلة
+        </button>
 
-<!-- ══════════ DIVIDER ══════════ -->
-<div class="mx-4 border-t border-gray-100"></div>
+        <div class="flex justify-center mb-8">
+            <div class="bg-black text-white px-4 py-2 rounded-xl flex items-center gap-3 w-max cursor-pointer">
+                <i class="fa-brands fa-apple text-3xl"></i>
+                <div class="text-right">
+                    <p class="text-[10px]">Download on the</p>
+                    <p class="text-lg font-bold leading-none">App Store</p>
+                </div>
+            </div>
+        </div>
 
-<!-- ══════════ DESCRIPTION SECTION ══════════ -->
-<section class="px-4 py-3">
-  <h2 class="text-sm font-bold mb-1.5" style="color:var(--text-dark);">الوصف</h2>
-  <p class="text-gray-500 leading-relaxed" style="font-size:.82rem;line-height:1.65;">
-    الآيفون 17 برو ماكس الجديد من آبل — بأدائٍ استثنائي وتصميمٍ فارق. شاشة OLED ورودة وكاميرا متعددة العدسات التي ترفعك إلى مستوى جديد من التصوير والإنتاجية.
-  </p>
-</section>
+        <div class="flex justify-between items-center px-2 mb-8">
+            <i class="fa-brands fa-facebook text-[#1877F2] text-2xl"></i>
+            <i class="fa-brands fa-x-twitter text-black text-2xl"></i>
+            <i class="fa-brands fa-instagram text-[#E4405F] text-2xl"></i>
+            <i class="fa-brands fa-youtube text-[#CD201F] text-2xl"></i>
+            <i class="fa-brands fa-snapchat text-[#FFFC00] bg-black rounded-full p-1 text-xl"></i>
+            <i class="fa-brands fa-tiktok text-black text-2xl"></i>
+            <i class="fa-brands fa-linkedin text-[#0A66C2] text-2xl"></i>
+        </div>
+    </main>
 
-<!-- ══════════ FOOTER (DARK NAVY) ══════════ -->
-<footer class="mt-auto" style="background:var(--navy);">
-  <!-- Social Icons -->
-  <div class="flex justify-center gap-3 py-5 px-4">
-    <!-- Twitter/X -->
-    <div class="social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </div>
-    <!-- Instagram -->
-    <div class="social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-    </div>
-    <!-- Facebook -->
-    <div class="social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-    </div>
-    <!-- YouTube -->
-    <div class="social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-    </div>
-    <!-- Snapchat -->
-    <div class="social-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 3.88 2.26 7.24 5.53 8.84-.08.94-.27 2.03-.6 2.72-.15.33-.03.73.33.82 3.36.82 5.68.41 7.03-.32.28-.14.67-.04.81.25.84 1.78 2.12 2.83 3.59 2.83.55 0 1-.45 1-1 0-1.07.35-2.1.94-2.97.52-.74.94-1.58 1.04-2.48C20.23 18.95 22 16.2 22 12c0-5.52-4.48-10-10-10zm-.3 15.5c-.05.65-.55 1.15-1.2 1.15s-1.15-.5-1.2-1.15L8.5 12h3l.2 5.5zm3.6 0c-.05.65-.55 1.15-1.2 1.15s-1.15-.5-1.2-1.15L12.5 12h3l.3 5.5z"/></svg>
-    </div>
-  </div>
+    <footer class="bg-[#2D3E50] text-white p-5 mt-auto">
+        <div class="space-y-4">
+            <div onclick="toggleAcc(1)" class="flex justify-between items-center border-b border-gray-600 pb-3 cursor-pointer">
+                <span class="font-bold">رعاية العميل</span>
+                <i id="icon-1" class="fa-solid fa-chevron-down rotate-icon text-sm"></i>
+            </div>
+            <div id="content-1" class="accordion-content text-gray-400 text-sm">سياسة الإرجاع، الضمان، وخدمات التوصيل.</div>
 
-  <!-- Accordion Menu -->
-  <div class="px-4 pb-4">
-    <!-- Item 1 -->
-    <div class="accordion-item">
-      <button class="accordion-btn" onclick="toggleAccordion(this)">
-        <span>خدمات جرير</span>
-        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8bcc8" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="accordion-body">
-        <p>يمكنك الاستفادة من خدمات التوصيل السريع، والدعم الفني على مدار الأسبوع، وبرنامج الإعادة والتبديل.</p>
-      </div>
-    </div>
-    <!-- Item 2 -->
-    <div class="accordion-item">
-      <button class="accordion-btn" onclick="toggleAccordion(this)">
-        <span>سياسة الإعادة</span>
-        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8bcc8" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="accordion-body">
-        <p>نوفر إعادة المنتجات خلال 30 يومًا من تاريخ الشراء، شريطة أن يكون المنتج في حالته الأصلية.</p>
-      </div>
-    </div>
-    <!-- Item 3 -->
-    <div class="accordion-item" style="border-bottom:none;">
-      <button class="accordion-btn" onclick="toggleAccordion(this)">
-        <span>التواصل معنا</span>
-        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8bcc8" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="accordion-body">
-        <p>اتصل بنا عبر الهاتف أو البريد الإلكتروني أو زارونا في أقرب فرع. فريقنا دائمًا مستعد لمساعدتكم.</p>
-      </div>
-    </div>
-  </div>
+            <div onclick="toggleAcc(2)" class="flex justify-between items-center border-b border-gray-600 pb-3 cursor-pointer">
+                <span class="font-bold">اكتشف جرير</span>
+                <i id="icon-2" class="fa-solid fa-chevron-down rotate-icon text-sm"></i>
+            </div>
+            <div id="content-2" class="accordion-content text-gray-400 text-sm">فروعنا، مجلة جرير، وآخر العروض.</div>
+        </div>
+        
+        <p class="text-center text-[10px] text-gray-500 mt-10">جميع الحقوق محفوظة لمكتبة جرير © 2026</p>
+    </footer>
 
-  <!-- Copyright -->
-  <div class="text-center py-3 border-t border-gray-700">
-    <p style="color:#6b8a9e;font-size:.75rem;">© 2025 جرير. جميع الحقوق محفوظة.</p>
-  </div>
-</footer>
-
-<!-- ══════════ SCRIPT ══════════ -->
-<script>
-function toggleAccordion(btn) {
-  const body = btn.nextElementSibling;
-  const isOpen = body.classList.contains('open');
-
-  // Close all
-  document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.accordion-btn').forEach(b => b.classList.remove('open'));
-
-  // Toggle current
-  if (!isOpen) {
-    body.classList.add('open');
-    btn.classList.add('open');
-  }
-}
-</script>
+    <script>
+        function toggleAcc(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
